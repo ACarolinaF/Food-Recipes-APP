@@ -3,8 +3,11 @@ const router = Router();
 const axios = require('axios');
 const {Diet} = require('../db');
 
-router.get('/', (req, res, next)=>{
+router.get('/', async(req, res, next)=>{
     try {
+
+        let diet_types = await Diet.findAll();
+        res.json(diet_types);
         
     } catch (error) {
         console.log(error);
