@@ -12,7 +12,7 @@ router.post('/', async (req, res, next)=>{
         score,
         healthScore,
         // steps,
-        // diets,
+        diets,
         // dishTypes,
         // cuisines
     } = req.body;
