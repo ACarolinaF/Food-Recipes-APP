@@ -7,83 +7,93 @@ const API_KEY = process.env.API_KEY;
 
 
 
-// router.get('/', async(req, res)=>{
+router.get('/', async(req, res)=>{
 
-//     let recipe_DB = await Recipe.findAll({
-//         include: Diet
-//     })
+    let recipe_DB = await Recipe.findAll({
+        include: Diet
+    })
 
-//     let recipe_api= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`);
+    let recipe_api= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`);
 
-//     //------------ recipes?name="..."
+    //------------ recipes?name="..."
 
-//     if(req.query.name){
-//         try {
+    if(req.query.name){
+        try {
 
-//             //let recipe_api_filter = recipe_api.
+            //let recipe_api_filter = recipe_api.
             
-//             // axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&query=${req.body.name}&number=100`);
+            // axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&query=${req.body.name}&number=100`);
 
-//             if(!recipe_api){
-//                 return res.status(204).json(`${req.query.name} - Recipe not Found`);
-//             }
+            // if(!recipe_api){
+            //     return res.status(204).json(`${req.query.name} - Recipe not Found`);
+            // }
             
-//             const recipe_found = recipe_api.data.results.map(r =>{
-//                 return{
-//                     id: r.id,
-//                     name: r.title,
-//                     image: r.image,
-//                     summary: r.summary,
-//                     score: r.spoonacularScore,
-//                     healthScore: r.healthScore,
-//                     // steps: r.analyzedInstructions[0].steps.map(s => s.step).flat(1).join(""),
-//                     diets: r.diets,
-//                     dishTypes: r.dishTypes,
-//                     cuisines: r.cuisines
-//                 }
-//             })
-
-//             const filter_recipe_db = recipe_DB.filter(r => r.name.toLowerCase().includes(req.query.name.toLowerCase()))
+            const recipe_found = recipe_api.data.results.map(r =>{
+                return{
+                    id: r.id,
+                    name: r.title,
+                    image: r.image,
+                    summary: r.summary,
+                    score: r.spoonacularScore,
+                    healthScore: r.healthScore,
+                    // steps: r.analyzedInstructions[0].steps.map(s => s.step).flat(1).join(""),
+                    diets: r.diets,
+                    dishTypes: r.dishTypes,
+                    cuisines: r.cuisines
+                }
+            })
             
-//             const result = [...filter_recipe_db, ...recipe_found.splice(0,9)]
+            const total = [...recipe_DB, ... recipe_found];
 
-//             // res.json(result);
+            const filter = total.filter(r => r.title.toLowerCase().includes(req.query.name.toString().toLowerCase()))
 
-//             res.json(`${recipe_api.data.results}`)
+            if(filter.length > 0){
+                return res.json(filter);
+            }else{
+                res.send('Recipe not found')
+            }
 
-
-
-//         } catch (error) {
-//             console.log(error)
-//         }
-//     }else{
-//         try {
-
-//             let recipe_api = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`);
-
-//             const recipe_response = recipe_api.data.results.map(r => {
-//                 return {
-//                     id: r.id,
-//                     name: r.title,
-//                     image: r.image,
-//                     summary: r.summary,
-//                     score: r.spoonacularScore,
-//                     healthScore: r.healthScore,
-//                     // steps: r.analyzedInstructions[0].steps.map(s => s.step), //.flat(1).join(""),
-//                     diets: r.diets,
-//                     dishTypes: r.dishTypes,
-//                     cuisines: r.cuisines
-//                 }
-//             })
-
-//             res.json(recipe_response);
+            // const filter_recipe_db = recipe_DB.filter(r => r.name.toLowerCase().includes(req.query.name.toLowerCase()))
             
-//         } catch (error) {
-//             console.log(error);
-//         }
-//     }
+            // const result = [...filter_recipe_db, ...recipe_found.splice(0,9)]
 
-// })
+            // // res.json(result);
+
+            // res.json(`${recipe_api.data.results}`)
+
+
+
+        } catch (error) {
+            console.log(error)
+        }
+    }else{
+        try {
+
+            let recipe_api = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`);
+
+            const recipe_response = recipe_api.data.results.map(r => {
+                return {
+                    id: r.id,
+                    name: r.title,
+                    image: r.image,
+                    summary: r.summary,
+                    score: r.spoonacularScore,
+                    healthScore: r.healthScore,
+                    // steps: r.analyzedInstructions[0].steps.map(s => s.step), //.flat(1).join(""),
+                    diets: r.diets,
+                    dishTypes: r.dishTypes,
+                    cuisines: r.cuisines
+                }
+            })
+
+            res.json(recipe_response);
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+})
 
 
 
