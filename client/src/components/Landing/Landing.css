@@ -1,0 +1,10 @@
+.landing_div{
+    /* background-image: url('../../img/landing_img.jpg') ; */
+    height: 900px;
+    width: auto;
+}
+
+.landing_button{
+    border-radius: 20px;
+    font-size: x-large;
+}
