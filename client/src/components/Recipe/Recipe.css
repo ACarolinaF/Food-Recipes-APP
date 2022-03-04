@@ -1,0 +1,18 @@
+
+
+.principal_div{
+    border: 2px solid black;
+    border-radius: 10px;
+    text-decoration: none;
+    margin: 5px;
+    display: flex;
+}
+
+.recipe_div{
+    border: 2px solid black;
+    text-decoration: none;
+    border-radius: 10px;
+    text-decoration: none;
+    display: flex;
+    text-align: center;
+}
