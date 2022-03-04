@@ -2,7 +2,7 @@ import React from "react";
 import './RecipeDetail.css';
 
 
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getDetails } from "../../actions/index"
@@ -23,16 +23,19 @@ export default function RecipeDetail (){
     useEffect(()=>{
         dispatch(
             getDetails(id)
-        )
-    }, [])
+        );
+    }, [dispatch, id])
     
     return(
         <div className="recipedetails_div">
             <NavBar/>
             <div >
                 <h1>Recipe Details</h1>
-                {recipeDetails.name}
+                {/* {recipeDetails.name} */}
             </div>
+            <NavLink to="/home">
+                <button className="back_button">Back</button>
+            </NavLink>
 
         </div>
     )
