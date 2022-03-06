@@ -4,3 +4,16 @@
 .navBar_container{
     background-color: #F1FAFF;
 }
+
+.navlink{
+    padding: 7px 25px;
+    margin: 10px;
+    border: none;
+    /* background-color: #BEB5C6; */
+    background-color: #DEC4AC;
+    color: #112a46cf;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 3000ms;
+}
