@@ -52,9 +52,9 @@
     transition: all 1000ms;
     background-color: #FFC78C;
 }
-.recipe_div:hover .button_container{
+/* .recipe_div:hover .button_container{
     /* background-color: black; */
-}
+/* } */ 
 
 
 .navlink_container{

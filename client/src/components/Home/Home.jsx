@@ -11,12 +11,27 @@ import FilterBy from "../FilterBy/FilterBy";
 import Pagination from "../Pagination/Pagination";
 import RecipeCards from "../RecipeCards/RecipeCards";
 import { useEffect } from "react";
+import { useState } from "react";
 
 
 
 export default function Home (){
 
+
     let allRecipes = useSelector(state=>state.recipes)
+
+        //----PAGINATION----//
+        const [currentPage, setCurrentPage] = useState(1);
+        const cardPerPage = 9;
+                //index of pagination
+                const indexOfLastCard = currentPage * cardPerPage;
+                const indexOfFirstCard = indexOfLastCard - cardPerPage;
+            //renderized cards
+            const currentCards = allRecipes.slice(indexOfFirstCard, indexOfLastCard)
+        const paginate =(pagenumber) =>{
+            setCurrentPage(pagenumber);
+        }
+        //-----------------//
 
     const dispatch = useDispatch();
 
@@ -53,9 +68,14 @@ export default function Home (){
                 handleSelect_filter={handleSelect_filter}
                 handleSelect_order={handleSelect_order}
             />
-            <Pagination/>
+            <Pagination
+                cardPerPage={cardPerPage}
+                totalCards={allRecipes.length}
+                paginate={paginate}
+                currentPage={currentPage}
+            />
             <RecipeCards
-                recipes={allRecipes}
+                recipes={currentCards}
             />
 
         </div>

@@ -25,7 +25,6 @@ export default function RecipeCards({recipes}){
                     />
                 ))
             }
-            Recipe Cards
         </div>
     )
 }
