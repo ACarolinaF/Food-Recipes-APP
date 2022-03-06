@@ -14,7 +14,7 @@ import NavBar from "../NavBar/NavBar.jsx";
 
 export default function RecipeDetail (){
 
-    const {id} = useParams;
+    const {id} = useParams();
 
     const recipeDetails = useSelector(state=> state.recipeById)
 
@@ -31,7 +31,7 @@ export default function RecipeDetail (){
             <NavBar/>
             <div >
                 <h1>Recipe Details</h1>
-                {/* {recipeDetails.name} */}
+                <h1>{recipeDetails.name}</h1>
             </div>
             <NavLink to="/home">
                 <button className="back_button">Back</button>

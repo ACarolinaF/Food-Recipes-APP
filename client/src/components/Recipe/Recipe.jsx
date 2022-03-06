@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import './Recipe.css';
 
 
@@ -7,20 +7,20 @@ export default function Recipe(props){
 
     return(
         <div className="principal_div">
-            <Link to={`/recipe/${props.id}`}>
                 <div className="recipe_div">
-                    <h4> ID: {props.id}</h4>
-                    <h4> NAME: {props.name}</h4>
-                    <img className="img" src={props.image} alt="Recipe"/>
-                    <h4> SUMMARY: {props.summary}</h4>
-                    <h4> SCORE: {props.score}</h4>
-                    <h4> HEALTH SCORE: {props.healthScore}</h4>
-                    <h4> STEPS: {props.steps}</h4>
-                    <h4> DIET: {props.diets}</h4>
-                    <h4> DISH TYPES: {props.dishTypes}</h4>
-                    <h4> CUISINES: {props.cuisines}</h4>
+                    <div className="img_div">
+                        <img className="img" src={props.image} alt="Recipe"/>
+                    </div>
+                    <div className="info_div">
+                        <h2> {props.name}</h2>
+                        <h4> <strong>Score:</strong> {props.score}%</h4>
+                        <h4> <strong>Diet Type:</strong> {props.diets.join(", ")}</h4>
+                        <h4> <strong>Cuisines:</strong> {props.cuisines.join(", ")}</h4>
+                        <NavLink to={`/recipe/${props.id}`} className="navlink_container"><button className="button_container">More Details</button></NavLink>
+                    </div>
+                    
                 </div>
-            </Link>
+               
         </div>
     )
 }

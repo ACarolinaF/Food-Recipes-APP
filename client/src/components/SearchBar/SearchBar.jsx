@@ -16,17 +16,17 @@ export default function SearchBar(){
         setInput(e.target.value.toLowerCase())
     }
 
-    const handleOnClick = (e) => {
-        // e.preventdefault();
+    const handleSubmit = (e) => {
+        e.preventdefault();
         dispatch(
             searchName(input)
         );
-        // setInput("")
+        setInput("")
     }
 
     return (
         <div>
-            <form onSubmit={handleOnClick}>
+            <form onSubmit={handleSubmit}>
                 <input className="input"
                     name="search"
                     placeholder="Find your recipe here..."

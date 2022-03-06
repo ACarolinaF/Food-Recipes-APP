@@ -1,7 +1,7 @@
 import React from "react";
 import './Home.css';
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes } from "../../actions";
+import { getRecipes , getTypes, filter, order} from "../../actions";
 
 
 //componentes importados:
@@ -22,17 +22,37 @@ export default function Home (){
 
     useEffect(()=>{
         dispatch(
-            getRecipes()
+            getRecipes(),
         )
     }, [dispatch])
 
+    // useEffect(()=>{
+    //     dispatch(
+    //         getTypes()
+    //     )
+    // }, [dispatch])
+
+    const handleSelect_filter = (e) =>{
+        e.preventdefault()
+        dispatch(filter(e.target.value))
+        //setcurrentpage!!!
+    }
+
+    const handleSelect_order = (e) =>{
+        e.preventdefault()
+        dispatch(order(e.target.value))
+        //setPAge!!!
+    }
 
 
     return(
         <div className="home_container">
             <NavBar/>
             <SearchBar/>
-            <FilterBy/>
+            <FilterBy
+                handleSelect_filter={handleSelect_filter}
+                handleSelect_order={handleSelect_order}
+            />
             <Pagination/>
             <RecipeCards
                 recipes={allRecipes}

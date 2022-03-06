@@ -3,14 +3,17 @@ import { GET_RECIPES,
         SEARCH_BY_NAME,
         FILTER_BY,
         ORDER_BY,
-        POST_RECIPE
+        POST_RECIPE,
+        GET_DIET_TYPES
     } from "../actions/index.js";
 
 
 const inicialState={
     recipes: [],
+    recipesBackup: [],
     recipeById: {},
-    recipesByName: []
+    recipesByName: [],
+    dietTypes:[]
     
     // ---- TERMINAR O FILTER E O ORDER
 
@@ -19,10 +22,16 @@ const inicialState={
 
 function rootReducer (state = inicialState , action){
     switch(action.type){
+        case GET_DIET_TYPES:
+            return{
+                ...state,
+                dietTypes: action.payload
+            }
         case GET_RECIPES:
             return{
                 ...state,
-                recipes: action.payload
+                recipes: action.payload,
+                recipesBackup: action.payload
             }
         case GET_DETAIL_ID:
             return {
@@ -36,12 +45,32 @@ function rootReducer (state = inicialState , action){
             }
         case FILTER_BY:
             return {
-
+                
             }
         case ORDER_BY:
-            return{
+            let order;
 
+            if(action.payload === 'a-z'){
+                order= state.recipesBackup.sort((a,b)=>{
+                    if(a.name > b.name) return 1;
+                    if(a.name < b.name) return -1;
+                    else return 0;
+                })
             }
+            if(action.payload === 'z-a'){
+                order= state.recipesBackup.sort((a,b)=>{
+                    if(a.name > b.name) return -1;
+                    if(a.name < b.name) return 1;
+                    else return 0;
+                })
+            }
+            if(action.payload === 'asc'){
+                order= state.recipesBackup.sort((a,b)=> a.score - b.rating)
+            }
+            if(action.payload === 'des'){
+                order= state.recipesBackup.sort((a,b) => b.rating - a.rating)
+            }
+
         case POST_RECIPE:
             return{}
         default:

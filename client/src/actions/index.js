@@ -6,9 +6,24 @@ export const SEARCH_BY_NAME ='SEARCH_BY_NAME'; //trae una lista que haga corresp
 export const FILTER_BY = 'FILTER_BY'; //filtro por tipos de dietas
 export const ORDER_BY = 'ORDER_BY'; // ordenar alfabeticamente y por score (crescente y decrescente)
 export const POST_RECIPE = 'POST_RECIPE'; //post de una receta
+export const GET_DIET_TYPES = 'GET_DIET_TYPES'; //para que me traiga todos los tipos de dieta
 
 
 
+
+export function getTypes(){
+    try {
+        return async function(dispatch){
+            var response = await axios.get("http://localhost:3001/types");
+            return dispatch({
+                type: GET_DIET_TYPES,
+                payload: response.data
+            })
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 export function getRecipes(){
     try {

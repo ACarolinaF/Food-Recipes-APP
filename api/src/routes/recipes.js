@@ -125,7 +125,7 @@ router.get('/:id', async (req, res)=>{
             
             return res.json({
                 id: response.data.id,
-                name: response.data.name,
+                name: response.data.title,
                 image: response.data.image,
                 summary: response.data.summary,
                 score: response.data.spoonacularScore,
