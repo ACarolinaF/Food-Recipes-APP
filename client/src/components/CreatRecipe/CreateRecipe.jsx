@@ -1,8 +1,11 @@
 import React from "react";
 import './CreateRecipe.css';
 import { useState } from "react";
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 import NavBar from "../NavBar/NavBar";
+
 
 
 export default function CreateRecipe (){
@@ -18,9 +21,17 @@ export default function CreateRecipe (){
         diets: []
     });
 
-    // handleChange = e =>{
+    const handleChange = e =>{
 
-    // };
+        setErrors(validate({
+            ...form,
+            [e.target.name]: e.target.value
+        }))
+        setForm(validate({
+            ...form,
+            [e.target.name]: e.target.value
+        }))
+    };
 
     const validate = form =>{
         let errors ={};
@@ -57,6 +68,27 @@ export default function CreateRecipe (){
         return errors;
     }
 
+    const history = useNavigate();
+
+    const handleSubmit = e =>{
+        e.preventDefault()
+
+        validate(form);
+
+        let checkboxsErrors= [];
+        if (form.diets.length < 1) checkboxsErrors.push('Diet Types are required');
+
+        if(Object.values(errors).length || checkboxsErrors.length){
+            return alert(Object.values(errors).concat(checkboxsErrors).join('\n'));
+        }
+
+
+        axios.post('http://localhost:3001/recipe', form)
+            .then(res => console.log(res.data))
+        alert(`${form.name} New Recipe Created Successfully`)
+        history('/home')
+    }
+
 
 
     return(
@@ -66,15 +98,15 @@ export default function CreateRecipe (){
             <div>
                 <h2>Create a Recipe</h2>
                 <div>
-                    <form id='createRecipe'>
+                    <form onSubmit={handleSubmit} onChange={handleChange}>
                         <h4>Name</h4>
                         <p>{errors.name}</p>
                         <input
                             type='text'
                             id='name'
                             value={form.name}
-                            // onChange={}
                             placeholder='Name'
+                            // onChange={}
                             // className={}
                         />
 
@@ -84,8 +116,8 @@ export default function CreateRecipe (){
                             name='summary'
                             id='summary'
                             value={form.summary}
-                            // onChange={}
                             placeholder='Summary'
+                            // onChange={}
                             // className={}
                         ></textarea>
 
@@ -95,8 +127,8 @@ export default function CreateRecipe (){
                             type='text'
                             id='score'
                             value={form.score}
-                            // onChange={}
                             placeholder='Score'
+                            // onChange={}
                             // className={}
                         />
 
@@ -106,8 +138,8 @@ export default function CreateRecipe (){
                             type='text'
                             id='healthScore'
                             value={form.healthScore}
-                            // onChange={}
                             placeholder='Health Score'
+                            // onChange={}
                             // className={}
                         />
 
