@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import './FilterBy.css';
 import { getTypes } from "../../actions";
+import { filter, order } from "../../actions";
 
 
 
@@ -12,6 +13,14 @@ export default function FilterBy({handleSelect_filter, handleSelect_order}){
     
     const handleTypes = (e) =>{
         dispatch(getTypes())
+    }
+
+    const handleSelect = (e) =>{
+        filter(e.target.value)
+    }
+
+    const handleSelect2 = (e) =>{
+        order(e.target.value)
     }
 
     return(

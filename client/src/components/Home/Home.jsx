@@ -50,13 +50,13 @@ export default function Home (){
     const handleSelect_filter = (e) =>{
         e.preventdefault()
         dispatch(filter(e.target.value))
-        //setcurrentpage!!!
+        setCurrentPage(1)
     }
 
     const handleSelect_order = (e) =>{
         e.preventdefault()
         dispatch(order(e.target.value))
-        //setPAge!!!
+        setCurrentPage(1);
     }
 
 

@@ -65,11 +65,13 @@ function rootReducer (state = inicialState , action){
                 })
             }
             if(action.payload === 'asc'){
-                order= state.recipesBackup.sort((a,b)=> a.score - b.rating)
+                order= state.recipesBackup.sort((a,b)=> a.score - b.score)
             }
             if(action.payload === 'des'){
-                order= state.recipesBackup.sort((a,b) => b.rating - a.rating)
+                order= state.recipesBackup.sort((a,b) => b.score - a.score)
             }
+            
+            return {...state, recipes: [...order]}
 
         case POST_RECIPE:
             return{}
