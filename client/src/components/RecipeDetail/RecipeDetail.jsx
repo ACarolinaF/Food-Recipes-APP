@@ -32,24 +32,22 @@ export default function RecipeDetail (){
     return(
         <div className="recipedetails_div">
             <NavBar/>
-            <div >
-                <h1>Recipe Details</h1>
-                
-
-                <h1>{recipeDetails.name}</h1>
-                <img src={recipeDetails.image} alt="Recipe Details"/>
-                <h4><span>Dish Type(s):</span></h4>
-                    {/* <p> {recipeDetails.dishTypes.join(", ")}</p> */}
-                <h4><span>Diet Type(s):</span></h4> 
-                    {/* <p>{recipeDetails.diets.join(", ")}</p> */}
-                <h4><span>Summary:</span></h4> 
-                    {/* <p>{recipeDetails.summary.replace(/(<([^>]+)>)/gi, "")}</p> */}
-                <h4><span>Score:</span></h4> 
-                    <p>{recipeDetails.score}</p>
-                <h4><span>Health Score:</span></h4> 
-                    <p>{recipeDetails.healthScore}</p>
-                <h4><span>Step by step:</span></h4> 
-                    {/* <p>{recipeDetails.steps.map(s=>s.map((e,i) => <p><strong>{i+1}</strong> - {e}</p>))}</p> */}
+            <div className="details_container">
+                <h1 className="title_principal_container">{recipeDetails.name}</h1>
+                <img className="img_container" src={recipeDetails.image && recipeDetails.image} alt="Recipe Details"/>
+                <div className="img_down">.          .</div>
+                <h2 className="titles_container"><span>Dish Type(s):</span></h2>
+                    <p className="info_container"> {recipeDetails.dishTypes && recipeDetails.dishTypes.join(", ")}</p>
+                <h2 className="titles_container"><span>Diet Type(s):</span></h2> 
+                    <p className="info_container">{recipeDetails.diets && recipeDetails.diets.join(", ")}</p>
+                <h2 className="titles_container"><span>Summary:</span></h2> 
+                    <p className="info_container_tx">{recipeDetails.summary && recipeDetails.summary.replace(/(<([^>]+)>)/gi, "")}</p>
+                <h2 className="titles_container"><span>Score:</span></h2> 
+                    <p className="info_container">{recipeDetails.score && recipeDetails.score}</p>
+                <h2 className="titles_container"><span>Health Score:</span></h2> 
+                    <p className="info_container">{recipeDetails.healthScore && recipeDetails.healthScore}</p>
+                <h2 className="titles_container"><span>Step by step:</span></h2> 
+                    <p className="info_container_tx">{recipeDetails.steps && recipeDetails.steps.map(s=>s.map((e,i) => <p><strong>{i+1}</strong> - {e}</p>))}</p>
             </div>
             <NavLink to="/home">
                 <button className="back_button">Back</button>

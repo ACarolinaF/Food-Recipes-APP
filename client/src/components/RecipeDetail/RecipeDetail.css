@@ -1,19 +1,72 @@
 
 
-/* .recipedetails_div{ */
-    /* background-color: #F1FAFF; */
-/* } */
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+/* font-family: 'Amatic SC', cursive; */
 
 
-/* .back_button{ */
-    /* padding: 7px 25px; */
-    /* margin-top: 15px; */
-    /* border: none; */
+.recipedetails_div{ 
+    background-color: #F1FAFF;
+}
+
+
+.back_button{
+    padding: 7px 25px;
+    margin-top: 15px;
+    border: none;
    /* background-color: #BEB5C6;  */
-    /* background-color: #DEC4AC; */
-    /* color: #112a46cf; */
-    /* font-size: 14px; */
-    /* cursor: pointer; */
-    /* border-radius: 8px; */
-    /* transition: all 3000ms; */
-/* }  */
+    background-color: #DEC4AC;
+    color: #112a46cf;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 3000ms;
+} 
+
+
+.recipedetails_div{
+    padding-bottom: 5em;
+    padding-left: 5em;
+    padding-right: 5em;
+}
+
+.details_container{
+    padding-bottom: 3em;
+}
+
+.img_container{
+    /* padding-left: 6em;
+    padding-right: 6em; */
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px 20px 0px 0px;
+    width: 500px;
+}
+.img_down{
+    background-color: #FFD879;
+    color: #FFD879;
+    width: 500px;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px 0px 20px 20px;
+    margin-top: -20px;
+    
+}
+
+.info_container_tx{
+    text-align: justify;
+}
+
+.info_container{
+    text-transform: capitalize;
+}
+
+.title_principal_container{
+    font-family: 'Amatic SC', cursive;
+    font-size: 35px;
+}
+
+.titles_container{
+    font-family: 'Amatic SC', cursive;
+}
+

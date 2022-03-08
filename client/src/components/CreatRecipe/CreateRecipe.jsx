@@ -22,6 +22,7 @@ export default function CreateRecipe (){
     });
 
     const handleChange = e =>{
+        if(e.target.parentNode.parentNode.id === 'dietTypes')
 
         setErrors(validate({
             ...form,
@@ -99,62 +100,83 @@ export default function CreateRecipe (){
                 <h2>Create a Recipe</h2>
                 <div>
                     <form onSubmit={handleSubmit} onChange={handleChange}>
-                        <h4>Name</h4>
-                        <p>{errors.name}</p>
-                        <input
-                            type='text'
-                            id='name'
-                            value={form.name}
-                            placeholder='Name'
-                            // onChange={}
-                            // className={}
-                        />
+                        
+                        <label htmlFor="name"><strong>Name:</strong></label><br/>
+                        <input placeholder="Name" type="text" id='name' name='name' autoComplete="off"/><br />
 
-                        <h4>Summary</h4>
-                        <p>{errors.summary}</p>
-                        <textarea
-                            name='summary'
-                            id='summary'
-                            value={form.summary}
-                            placeholder='Summary'
-                            // onChange={}
-                            // className={}
-                        ></textarea>
+                        <label htmlFor="summary"><strong>Summary:</strong></label><br/>
+                        <textarea placeholder="Summary" id='summary' name='summary' cols='40' rows='10'/><br/>
 
-                        <h4>Score</h4>
-                        <p>{errors.score}</p>
-                        <input
-                            type='text'
-                            id='score'
-                            value={form.score}
-                            placeholder='Score'
-                            // onChange={}
-                            // className={}
-                        />
+                        <label htmlFor="score"><strong>Score:</strong></label><br/>
+                        <input placeholder="Score" id='score' name='score' type='tel' autoComplete='off'/><br/>
 
-                        <h4>Health Score</h4>
-                        <p>{errors.healthScore}</p>
-                        <input
-                            type='text'
-                            id='healthScore'
-                            value={form.healthScore}
-                            placeholder='Health Score'
-                            // onChange={}
-                            // className={}
-                        />
+                        <label htmlFor="healthScore"><strong>Health Score:</strong></label><br/>
+                        <input placeholder="healthScore" id='healthScore' name='healthScore' type='tel' autoComplete='off'/><br/>
 
-                        <h4>Steps of the Recipe</h4>
+                        <label htmlFor="steps"><strong>Steps:</strong></label><br/>
+                        <textarea placeholder="Steps" id='steps' name='steps' cols='40' rows='10'/><br/>
+
+                        {/* <h4>Steps of the Recipe</h4>
                         <p>{errors.steps}</p>
                         <textarea
                             name='steps'
                             id='steps'
                             value={form.steps}
                             placeholder='Steps of the Recipe'
-                            // onChange={}
+                            onChange={handleChange}
                             // className={}
-                        ></textarea>
+                        ></textarea> */}
+
+                        {/* <h4>Score</h4>
+                        <p>{errors.score}</p>
+                        <input
+                            type='text'
+                            id='score'
+                            // value={form.score}
+                            placeholder='Score'
+                            onChange={handleChange}
+                            // className={}
+                        /> */}
+
+
+                        {/* <h4>Summary</h4>
+                        <p>{errors.summary}</p>
+                        <textarea
+                            name='summary'
+                            id='summary'
+                            value={form.summary}
+                            placeholder='Summary'
+                            onChange={handleChange}
+                            // className={}
+                        ></textarea> */}
+
+
+                        {/* <h4>Name</h4>
+                        <p>{errors.name}</p>
+                        <input
+                            type='text'
+                            id='name'
+                            value={form.name}
+                            placeholder='Name'
+                            onChange={handleChange}
+                            // className={}
+                        /> */}
+
+
+
+                        {/* <h4>Health Score</h4>
+                        <p>{errors.healthScore}</p>
+                        <input
+                            type='text'
+                            id='healthScore'
+                            value={form.healthScore}
+                            placeholder='Health Score'
+                            onChange={handleChange}
+                            // className={}
+                        /> */}
+
                         
-                        <div>
+                        <div id='dietTypes'>
                             <h4>Diet Types</h4>
 
                                 <input name='gluten free' value='1' type='checkbox' id='gluten free'/>
