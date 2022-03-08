@@ -1,10 +1,25 @@
 .landing_div{
-    background-image: url('../../img/landing_img.jpg') ;
+    background-image: url('../../img/spaghetti-73.gif') ;
     height: 900px;
     width: auto;
+    
 }
 
 .landing_button{
-    border-radius: 20px;
-    font-size: x-large;
+    padding: 7px 25px;
+    margin-top: 15px;
+    border: none;
+   /* background-color: #BEB5C6;  */
+    background-color: #DEC4AC;
+    color: #112a46cf;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 3000ms;
 }
+
+
+
+/* .back_button{ */
+
+/* }  */

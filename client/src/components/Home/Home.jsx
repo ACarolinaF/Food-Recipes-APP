@@ -74,9 +74,11 @@ export default function Home (){
                 paginate={paginate}
                 currentPage={currentPage}
             />
+            <div className="recipe_container">
             <RecipeCards
                 recipes={currentCards}
             />
+            </div>
 
         </div>
     )

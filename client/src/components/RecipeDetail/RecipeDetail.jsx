@@ -26,6 +26,9 @@ export default function RecipeDetail (){
         );
     }, [dispatch, id])
     
+
+    // css text-transform first letter capitalize
+    
     return(
         <div className="recipedetails_div">
             <NavBar/>
@@ -36,17 +39,17 @@ export default function RecipeDetail (){
                 <h1>{recipeDetails.name}</h1>
                 <img src={recipeDetails.image} alt="Recipe Details"/>
                 <h4><span>Dish Type(s):</span></h4>
-                    <p> {recipeDetails.dishTypes.join(", ")}</p>
+                    {/* <p> {recipeDetails.dishTypes.join(", ")}</p> */}
                 <h4><span>Diet Type(s):</span></h4> 
-                    <p>{recipeDetails.diets.join(", ")}</p>
+                    {/* <p>{recipeDetails.diets.join(", ")}</p> */}
                 <h4><span>Summary:</span></h4> 
-                    <p>{recipeDetails.summary.replace(/(<([^>]+)>)/gi, "")}</p>
+                    {/* <p>{recipeDetails.summary.replace(/(<([^>]+)>)/gi, "")}</p> */}
                 <h4><span>Score:</span></h4> 
                     <p>{recipeDetails.score}</p>
                 <h4><span>Health Score:</span></h4> 
                     <p>{recipeDetails.healthScore}</p>
                 <h4><span>Step by step:</span></h4> 
-                    <p>{recipeDetails.steps.map(s=>s.map((e,i) => <p><strong>{i+1}</strong> - {e}</p>))}</p>
+                    {/* <p>{recipeDetails.steps.map(s=>s.map((e,i) => <p><strong>{i+1}</strong> - {e}</p>))}</p> */}
             </div>
             <NavLink to="/home">
                 <button className="back_button">Back</button>
