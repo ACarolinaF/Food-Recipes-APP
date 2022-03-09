@@ -1,0 +1,28 @@
+
+
+.select_container{
+    margin: 10px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #DEC4AC;
+    color: #112a46cf;
+}
+
+.diets_container{
+    margin: 10px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #DEC4AC;
+    color: #112a46cf;
+}
+
+.filters_container{
+    margin: 10px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #DEC4AC;
+    color: #112a46cf;
+}

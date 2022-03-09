@@ -54,7 +54,7 @@ export default function Home (){
     }
 
     const handleSelect_order = (e) =>{
-        e.preventdefault()
+        // e.preventdefault()
         dispatch(order(e.target.value))
         setCurrentPage(1);
     }

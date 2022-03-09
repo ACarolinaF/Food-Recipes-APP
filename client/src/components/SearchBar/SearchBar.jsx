@@ -13,27 +13,45 @@ export default function SearchBar(){
     const dispatch = useDispatch();
 
     const handleOnChange = (e)=>{
-        setInput(e.target.value.toLowerCase())
+        // e.preventdefault();
+        setInput(e.target.value)
     }
 
     const handleSubmit = (e) => {
-        e.preventdefault();
+        // e.preventdefault();
         dispatch(
             searchName(input)
         );
         setInput("")
     }
 
+    const handleEnter = (e) =>{
+        if(e.key === 'Enter'){
+            // e.preventdefault();
+            dispatch(
+                searchName(input)
+            );
+            setInput("");
+        }
+    }
+
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <input className="input"
-                    name="search"
-                    placeholder="Find your recipe here..."
-                    onChange={handleOnChange}
-                    value={input}
-                ></input>
-            </form>
+            <input 
+                className="input"
+                type='text' 
+                placeholder="Find your recipe here..." 
+                onChange={handleOnChange}
+                onKeyDown={handleEnter}
+                value={input}
+            />
+
+            <button 
+                className="find"
+                type='submit' 
+                onClick={e=>handleSubmit(e)}
+            >🔎
+            </button>
         </div>
     )
 }

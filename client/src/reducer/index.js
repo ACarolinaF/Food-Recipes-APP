@@ -13,7 +13,8 @@ const inicialState={
     recipesBackup: [],
     recipeById: {},
     recipesByName: [],
-    dietTypes:[]
+    dietTypes:[],
+    orderBy:[]
     
     // ---- TERMINAR O FILTER E O ORDER
 
@@ -31,7 +32,8 @@ function rootReducer (state = inicialState , action){
             return{
                 ...state,
                 recipes: action.payload,
-                recipesBackup: action.payload
+                recipesBackup: action.payload,
+                orderBy: action.payload
             }
         case GET_DETAIL_ID:
             return {
@@ -41,7 +43,7 @@ function rootReducer (state = inicialState , action){
         case SEARCH_BY_NAME:
             return{
                 ...state,
-                recipesByName: action.payload
+                recipes: action.payload
             }
         case FILTER_BY:
             return {
@@ -51,24 +53,24 @@ function rootReducer (state = inicialState , action){
             let order;
 
             if(action.payload === 'a-z'){
-                order= state.recipesBackup.sort((a,b)=>{
+                order= state.orderBy.sort((a,b)=>{
                     if(a.name > b.name) return 1;
                     if(a.name < b.name) return -1;
                     else return 0;
                 })
             }
             if(action.payload === 'z-a'){
-                order= state.recipesBackup.sort((a,b)=>{
+                order= state.orderBy.sort((a,b)=>{
                     if(a.name > b.name) return -1;
                     if(a.name < b.name) return 1;
                     else return 0;
                 })
             }
             if(action.payload === 'asc'){
-                order= state.recipesBackup.sort((a,b)=> a.score - b.score)
+                order= state.orderBy.sort((a,b)=> a.score - b.score)
             }
             if(action.payload === 'des'){
-                order= state.recipesBackup.sort((a,b) => b.score - a.score)
+                order= state.orderBy.sort((a,b) => b.score - a.score)
             }
             
             return {...state, recipes: [...order]}

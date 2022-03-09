@@ -37,21 +37,21 @@ export default function FilterBy({handleSelect_filter, handleSelect_order}){
                 </optgroup>
             </select>
 
-            <select className="filter_container" onChange={handleTypes}>
-                {/* <optgroup className="optionGroup" label="Chose by Diet Types"> */}
-                    <option className="option" value="gluten free"></option>
-                    <option className="option" value="paleolithic"></option>
-                    <option className="option" value="vegetarian"></option>
-                    <option className="option" value="lacto ovo vegetarian"></option>
-                    <option className="option" value="vegan"></option>
-                    <option className="option" value="pescatarian"></option>
-                    <option className="option" value="paleo"></option>
-                    <option className="option" value="primal"></option>
-                    <option className="option" value="whole 30"></option>
-                    <option className="option" value="fodmap friendly"></option>
-                    <option className="option" value="fruitarian"></option>
-                    <option className="option" value="dairyFree"></option>
-                {/* </optgroup> */}
+            <select className="diets_container" onChange={handleTypes}>
+                <optgroup className="optionGroup" label="Chose by Diet Types">
+                    <option className="option" value="gluten free">Gluten Free</option>
+                    <option className="option" value="paleolithic">Paleolithic</option>
+                    <option className="option" value="vegetarian">Vegetarian</option>
+                    <option className="option" value="lacto ovo vegetarian">Lacto Ovo Vegetarian</option>
+                    <option className="option" value="vegan">Vegan</option>
+                    <option className="option" value="pescatarian">Pescatarian</option>
+                    <option className="option" value="paleo">Paleo</option>
+                    <option className="option" value="primal">Primal</option>
+                    <option className="option" value="whole 30">Whole 30</option>
+                    <option className="option" value="fodmap friendly">Fodmap Friendly</option>
+                    <option className="option" value="fruitarian">Fruitarian</option>
+                    <option className="option" value="dairyFree">DairyFree</option>
+                </optgroup>
             </select>
 
             <select className="filters_container" defaultValue="" onChange={handleSelect_order} name="" id="">
@@ -61,8 +61,8 @@ export default function FilterBy({handleSelect_filter, handleSelect_order}){
                     <option className="option" value="z-a">Z-A</option>
                 </optgroup>
                 <optgroup className="optionGroup" label="Score">
-                    <option className="option" value="asc">Score Asc</option>
-                    <option className="option" value="des">Score Des</option>
+                    <option className="option" value="asc">Score 1-100</option>
+                    <option className="option" value="des">Score 100-1</option>
                 </optgroup>
 
             </select>
