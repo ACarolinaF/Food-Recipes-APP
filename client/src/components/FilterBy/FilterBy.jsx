@@ -38,6 +38,7 @@ export default function FilterBy({handleSelect_filter, handleSelect_order}){
             </select>
 
             <select className="diets_container" onChange={handleTypes}>
+                <option>Diet Types</option>
                 <optgroup className="optionGroup" label="Chose by Diet Types">
                     <option className="option" value="gluten free">Gluten Free</option>
                     <option className="option" value="paleolithic">Paleolithic</option>
@@ -61,8 +62,8 @@ export default function FilterBy({handleSelect_filter, handleSelect_order}){
                     <option className="option" value="z-a">Z-A</option>
                 </optgroup>
                 <optgroup className="optionGroup" label="Score">
-                    <option className="option" value="asc">Score 1-100</option>
-                    <option className="option" value="des">Score 100-1</option>
+                    <option className="option" value="asc">1 to 100</option>
+                    <option className="option" value="des">100 to 1</option>
                 </optgroup>
 
             </select>

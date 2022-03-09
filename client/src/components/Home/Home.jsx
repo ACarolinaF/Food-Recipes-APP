@@ -37,7 +37,10 @@ export default function Home (){
 
     useEffect(()=>{
         dispatch(
-            getRecipes(),
+            getRecipes()
+        )
+        dispatch(
+            getTypes()
         )
     }, [dispatch])
 
