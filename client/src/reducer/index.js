@@ -46,9 +46,33 @@ function rootReducer (state = inicialState , action){
                 recipes: action.payload
             }
         case FILTER_BY:
-            return {
-                
-            }
+                if(action.payload === 'allrecipes'){
+                    return {...state}
+                }
+
+                if(action.payload === 'filter_BD'){
+                    return {
+                        ...state,
+                        recipes: state.orderBy.filter((r)=> (typeof r.id) === 'string')
+                    }
+                }
+
+                if(action.payload === 'filter_API'){
+                    return{
+                        ...state,
+                        recipes: state.orderBy.filter((r)=> (typeof r.id) === 'number')
+                        //si son un numero es porque pertenencen a la API
+                    }
+                }
+                else{
+                    return{...state, orderBy: state.orderBy.filter((r)=>{
+                        return r.dietTypes.find((dT)=>{
+                            return dT === action.payload
+                        })
+                    })}
+                }
+
+
         case ORDER_BY:
             let order;
 

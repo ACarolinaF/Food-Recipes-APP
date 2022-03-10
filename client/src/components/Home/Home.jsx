@@ -14,11 +14,17 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 
+//img
+import ups from "../../img/llorando.gif"
+
+
 
 export default function Home (){
 
 
     let allRecipes = useSelector(state=>state.recipes)
+
+    let allDietTypes = useSelector(state=>state.dietTypes)
 
         //----PAGINATION----//
         const [currentPage, setCurrentPage] = useState(1);
@@ -44,14 +50,8 @@ export default function Home (){
         )
     }, [dispatch])
 
-    // useEffect(()=>{
-    //     dispatch(
-    //         getTypes()
-    //     )
-    // }, [dispatch])
-
     const handleSelect_filter = (e) =>{
-        e.preventdefault()
+        // e.preventdefault()
         dispatch(filter(e.target.value))
         setCurrentPage(1)
     }
@@ -68,19 +68,28 @@ export default function Home (){
             <NavBar/>
             <SearchBar/>
             <FilterBy
+                allDietTypes={allDietTypes}
                 handleSelect_filter={handleSelect_filter}
                 handleSelect_order={handleSelect_order}
             />
+            
             <Pagination
                 cardPerPage={cardPerPage}
                 totalCards={allRecipes.length}
                 paginate={paginate}
                 currentPage={currentPage}
             />
+            
+            {/* ??????????????? solo aparece ups si el recipes esta vacio */}
             <div className="recipe_container">
-            <RecipeCards
-                recipes={currentCards}
-            />
+                {allRecipes && (allRecipes.length > 0 ? (
+                    <RecipeCards
+                    recipes={currentCards}
+                    />
+                ) : <h1>Uups</h1>)
+                }
+
+
             </div>
 
         </div>

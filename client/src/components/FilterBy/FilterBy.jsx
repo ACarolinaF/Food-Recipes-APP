@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import './FilterBy.css';
 import { getTypes } from "../../actions";
 import { filter, order } from "../../actions";
@@ -9,19 +9,7 @@ import { filter, order } from "../../actions";
 
 export default function FilterBy({handleSelect_filter, handleSelect_order}){
 
-    const dispatch = useDispatch();
-    
-    const handleTypes = (e) =>{
-        dispatch(getTypes())
-    }
-
-    const handleSelect = (e) =>{
-        filter(e.target.value)
-    }
-
-    const handleSelect2 = (e) =>{
-        order(e.target.value)
-    }
+    const allDietTypes = useSelector(state=>state.dietTypes)
 
     return(
         <div className="filter_container">
@@ -37,7 +25,7 @@ export default function FilterBy({handleSelect_filter, handleSelect_order}){
                 </optgroup>
             </select>
 
-            <select className="diets_container" onChange={handleTypes}>
+            <select className="diets_container" onChange={handleSelect_filter}>
                 <option>Diet Types</option>
                 <optgroup className="optionGroup" label="Chose by Diet Types">
                     <option className="option" value="gluten free">Gluten Free</option>
@@ -53,7 +41,30 @@ export default function FilterBy({handleSelect_filter, handleSelect_order}){
                     <option className="option" value="fruitarian">Fruitarian</option>
                     <option className="option" value="dairyFree">DairyFree</option>
                 </optgroup>
+            </select> 
+
+            <select className="diets_container" onChange={handleSelect_filter}>
+                <option>Diet Types</option>
+                <oprgroup label="Chose by Diet Types">
+                    {allDietTypes && allDietTypes.map(r => <option key={r.name} value={r.name}>{r.name}</option>)}
+
+                    {/* <option className="option" value="gluten free">Gluten Free</option>
+                    <option className="option" value="paleolithic">Paleolithic</option>
+                    <option className="option" value="vegetarian">Vegetarian</option>
+                    <option className="option" value="lacto ovo vegetarian">Lacto Ovo Vegetarian</option>
+                    <option className="option" value="vegan">Vegan</option>
+                    <option className="option" value="pescatarian">Pescatarian</option>
+                    <option className="option" value="paleo">Paleo</option>
+                    <option className="option" value="primal">Primal</option>
+                    <option className="option" value="whole 30">Whole 30</option>
+                    <option className="option" value="fodmap friendly">Fodmap Friendly</option>
+                    <option className="option" value="fruitarian">Fruitarian</option>
+                    <option className="option" value="dairyFree">DairyFree</option> */}
+
+                </oprgroup>
             </select>
+
+
 
             <select className="filters_container" defaultValue="" onChange={handleSelect_order} name="" id="">
                 <option>Order By</option>

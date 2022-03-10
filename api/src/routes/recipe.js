@@ -4,7 +4,7 @@ const axios = require ('axios');
 const {Recipe, Diet} = require('../db');
 
 
-router.post('/', async (req, res, next)=>{
+router.post('/', async (req, res)=>{
     let{
         name,
         image,
