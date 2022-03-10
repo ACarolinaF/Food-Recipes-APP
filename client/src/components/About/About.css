@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Comforter+Brush&display=swap');
+/* font-family: 'Comforter Brush', cursive; */
+
+@import url('https://fonts.googleapis.com/css2?family=Dawning+of+a+New+Day&display=swap');
+/* font-family: 'Dawning of a New Day', cursive; */
+
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+/* font-family: 'Amatic SC', cursive; */
+
+
+.about_container{
+    background-color: #F1FAFF;
+    
+}
+
+.title_container{
+    font-family: 'Amatic SC', cursive;
+    font-size: 50px;
+}
+
+.name_container{
+    font-family: 'Comforter Brush', cursive;
+    /* font-family: 'Dawning of a New Day', cursive; */
+    font-size: 50px;
+}

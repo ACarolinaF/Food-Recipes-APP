@@ -4,6 +4,7 @@ export const GET_RECIPES = 'GET_RECIPES'; //trae todas las recetas
 export const GET_DETAIL_ID = 'GET_DETAIL_ID'; //trae el detalle de una recet en especifico
 export const SEARCH_BY_NAME ='SEARCH_BY_NAME'; //trae una lista que haga correspondencia al pasado por query
 export const FILTER_BY = 'FILTER_BY'; //filtro por tipos de dietas
+export const FILTER_BY_DIETS = 'FILTER_BY_DIETS';
 export const ORDER_BY = 'ORDER_BY'; // ordenar alfabeticamente y por score (crescente y decrescente)
 export const POST_RECIPE = 'POST_RECIPE'; //post de una receta
 export const GET_DIET_TYPES = 'GET_DIET_TYPES'; //para que me traiga todos los tipos de dieta
@@ -73,6 +74,13 @@ export function filter(filter_key){
         payload: filter_key
     }
 };
+
+export function filter_diet(filter_d){
+    return{
+        type: FILTER_BY_DIETS,
+        payload: filter_d
+    }
+}
 
 export function order(order_key){
     return {

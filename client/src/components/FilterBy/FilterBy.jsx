@@ -2,14 +2,14 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './FilterBy.css';
 import { getTypes } from "../../actions";
-import { filter, order } from "../../actions";
+import { filter, order, filter_diet} from "../../actions";
 
 
 
 
-export default function FilterBy({handleSelect_filter, handleSelect_order}){
+export default function FilterBy({allDietTypes, handleSelect_filter, handleSelect_filter_diet, handleSelect_order}){
 
-    const allDietTypes = useSelector(state=>state.dietTypes)
+    
 
     return(
         <div className="filter_container">
@@ -23,11 +23,13 @@ export default function FilterBy({handleSelect_filter, handleSelect_order}){
                 <optgroup className="optionGroup" label="API">
                     <option className="option" value="filter_API">Available on API</option>
                 </optgroup>
+                
             </select>
 
-            <select className="diets_container" onChange={handleSelect_filter}>
+            <select className="diets_container" onChange={handleSelect_filter_diet} name="" id="">
                 <option>Diet Types</option>
                 <optgroup className="optionGroup" label="Chose by Diet Types">
+                    <option className="option" value="all">All Diet Types</option>
                     <option className="option" value="gluten free">Gluten Free</option>
                     <option className="option" value="paleolithic">Paleolithic</option>
                     <option className="option" value="vegetarian">Vegetarian</option>
@@ -43,10 +45,10 @@ export default function FilterBy({handleSelect_filter, handleSelect_order}){
                 </optgroup>
             </select> 
 
-            <select className="diets_container" onChange={handleSelect_filter}>
+            {/* <select className="diets_container" onChange={handleSelect_filter}>
                 <option>Diet Types</option>
                 <oprgroup label="Chose by Diet Types">
-                    {allDietTypes && allDietTypes.map(r => <option key={r.name} value={r.name}>{r.name}</option>)}
+                    {allDietTypes && allDietTypes.map(r => <option key={r.name} value={r.name}>{r.name}</option>)} */}
 
                     {/* <option className="option" value="gluten free">Gluten Free</option>
                     <option className="option" value="paleolithic">Paleolithic</option>
@@ -61,8 +63,8 @@ export default function FilterBy({handleSelect_filter, handleSelect_order}){
                     <option className="option" value="fruitarian">Fruitarian</option>
                     <option className="option" value="dairyFree">DairyFree</option> */}
 
-                </oprgroup>
-            </select>
+                {/* </oprgroup>
+            </select> */}
 
 
 

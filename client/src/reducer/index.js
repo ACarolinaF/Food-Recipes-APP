@@ -2,6 +2,7 @@ import { GET_RECIPES,
         GET_DETAIL_ID,
         SEARCH_BY_NAME,
         FILTER_BY,
+        FILTER_BY_DIETS,
         ORDER_BY,
         POST_RECIPE,
         GET_DIET_TYPES
@@ -46,35 +47,47 @@ function rootReducer (state = inicialState , action){
                 recipes: action.payload
             }
         case FILTER_BY:
-                if(action.payload === 'allrecipes'){
-                    return {...state}
-                }
+            if(action.payload === 'allrecipes'){
+                return {...state}
+            }
 
-                if(action.payload === 'filter_BD'){
-                    return {
-                        ...state,
-                        recipes: state.orderBy.filter((r)=> (typeof r.id) === 'string')
-                    }
+            if(action.payload === 'filter_BD'){
+                return {
+                    ...state,
+                    recipes: state.orderBy.filter((r)=> (typeof r.id) === 'string')
                 }
+            }
 
-                if(action.payload === 'filter_API'){
-                    return{
-                        ...state,
-                        recipes: state.orderBy.filter((r)=> (typeof r.id) === 'number')
-                        //si son un numero es porque pertenencen a la API
-                    }
+            if(action.payload === 'filter_API'){
+                return{
+                    ...state,
+                    recipes: state.orderBy.filter((r)=> (typeof r.id) === 'number')
+                    //si son un numero es porque pertenencen a la API
                 }
+            }
 
-                else{
-                    const recipes = state.recipes
-                    const dietFiltered = recipes.diets.map(r=> r.includes(action.paylod))
+        
+        case FILTER_BY_DIETS:
 
-                    return{
-                        ...state,
-                        recipes: dietFiltered
-                    }
-                }
+            const allrecipes = state.recipes
+            const typeFiltered = action.payload === 'all' ? allrecipes :
+                allrecipes.filter(e => e.diets.include(action.payload));
+
+            return {
+                ...state,
+                recipes: typeFiltered
+            }
+
+
+            // const recipes = state.recipes
+            // const dietFiltered = recipes.diets.map(r=> r.includes(action.paylod))
+
+            // return{
+            //     ...state,
+            //     recipes: dietFiltered
+            // }
                 
+
 
         case ORDER_BY:
             let order;

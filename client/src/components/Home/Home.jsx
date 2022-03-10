@@ -1,7 +1,7 @@
 import React from "react";
 import './Home.css';
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes , getTypes, filter, order} from "../../actions";
+import { getRecipes , getTypes, filter, order, filter_diet} from "../../actions";
 
 
 //componentes importados:
@@ -56,6 +56,11 @@ export default function Home (){
         setCurrentPage(1)
     }
 
+    const handleSelect_filter_diet =(e)=>{
+        dispatch(filter_diet(e.target.value))
+        setCurrentPage(1)
+    }
+
     const handleSelect_order = (e) =>{
         // e.preventdefault()
         dispatch(order(e.target.value))
@@ -70,6 +75,7 @@ export default function Home (){
             <FilterBy
                 allDietTypes={allDietTypes}
                 handleSelect_filter={handleSelect_filter}
+                handleSelect_filter_diet={handleSelect_filter_diet}
                 handleSelect_order={handleSelect_order}
             />
             

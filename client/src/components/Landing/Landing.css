@@ -1,25 +1,26 @@
 .landing_div{
     background-image: url('../../img/spaghetti-73.gif') ;
-    height: 900px;
-    width: auto;
+    /* background-image: url('../../img/spaghetti-73-unscreen.gif'); */
+    /* background-image: url('../../img/food_all-giphy.gif'); */
+
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     
 }
 
 .landing_button{
     padding: 7px 25px;
-    margin-top: 15px;
+    margin-top: 50px;
+    margin-bottom: 550px;
     border: none;
    /* background-color: #BEB5C6;  */
     background-color: #DEC4AC;
     color: #112a46cf;
-    font-size: 18px;
+    font-size: 30px;
     cursor: pointer;
     border-radius: 8px;
     transition: all 3000ms;
 }
 
-
-
-/* .back_button{ */
-
-/* }  */
