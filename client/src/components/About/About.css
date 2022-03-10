@@ -41,14 +41,7 @@
 
 
 
-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #F1FAFF;
-  }
+
   h1{
     color: #fff;
     text-transform: uppercase;
@@ -168,4 +161,4 @@ body{
     border-radius: 5px;
     width: 56px;
     height: 56px;
-}
+  }

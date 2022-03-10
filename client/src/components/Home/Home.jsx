@@ -70,6 +70,7 @@ export default function Home (){
 
     return(
         <div className="home_container">
+            <div>
             <NavBar/>
             <SearchBar/>
             <FilterBy
@@ -85,6 +86,7 @@ export default function Home (){
                 paginate={paginate}
                 currentPage={currentPage}
             />
+            </div>
             
             {/* ??????????????? solo aparece ups si el recipes esta vacio */}
             <div className="recipe_container">
