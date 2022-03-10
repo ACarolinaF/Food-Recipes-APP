@@ -64,14 +64,17 @@ function rootReducer (state = inicialState , action){
                         //si son un numero es porque pertenencen a la API
                     }
                 }
-                else{
-                    return{...state, orderBy: state.orderBy.filter((r)=>{
-                        return r.dietTypes.find((dT)=>{
-                            return dT === action.payload
-                        })
-                    })}
-                }
 
+                else{
+                    const recipes = state.recipes
+                    const dietFiltered = recipes.diets.map(r=> r.includes(action.paylod))
+
+                    return{
+                        ...state,
+                        recipes: dietFiltered
+                    }
+                }
+                
 
         case ORDER_BY:
             let order;
