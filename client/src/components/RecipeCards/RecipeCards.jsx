@@ -7,7 +7,7 @@ import Recipe from '../Recipe/Recipe'
 export default function RecipeCards({recipes}){
 
     return(
-        <div>
+        <div className="cards">
             {
                 recipes.map((r)=>(
                     <Recipe

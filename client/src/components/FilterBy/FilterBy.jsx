@@ -26,50 +26,18 @@ export default function FilterBy({allDietTypes, handleSelect_filter, handleSelec
                 
             </select>
 
-            <select className="diets_container" onChange={handleSelect_filter_diet} name="" id="">
+
+            <select className="diets_container" onChange={handleSelect_filter_diet}>
                 <option>Diet Types</option>
-                <optgroup className="optionGroup" label="Chose by Diet Types">
+                <optgroup label="Chose by Diet Types">
                     <option className="option" value="all">All Diet Types</option>
-                    <option className="option" value="gluten free">Gluten Free</option>
-                    <option className="option" value="paleolithic">Paleolithic</option>
-                    <option className="option" value="vegetarian">Vegetarian</option>
-                    <option className="option" value="lacto ovo vegetarian">Lacto Ovo Vegetarian</option>
-                    <option className="option" value="vegan">Vegan</option>
-                    <option className="option" value="pescatarian">Pescatarian</option>
-                    <option className="option" value="paleo">Paleo</option>
-                    <option className="option" value="primal">Primal</option>
-                    <option className="option" value="whole 30">Whole 30</option>
-                    <option className="option" value="fodmap friendly">Fodmap Friendly</option>
-                    <option className="option" value="fruitarian">Fruitarian</option>
-                    <option className="option" value="dairyFree">DairyFree</option>
+                    {allDietTypes && allDietTypes.map(r => <option key={r.name} value={r.name}>{r.name}</option>)}
                 </optgroup>
-            </select> 
-
-            {/* <select className="diets_container" onChange={handleSelect_filter}>
-                <option>Diet Types</option>
-                <oprgroup label="Chose by Diet Types">
-                    {allDietTypes && allDietTypes.map(r => <option key={r.name} value={r.name}>{r.name}</option>)} */}
-
-                    {/* <option className="option" value="gluten free">Gluten Free</option>
-                    <option className="option" value="paleolithic">Paleolithic</option>
-                    <option className="option" value="vegetarian">Vegetarian</option>
-                    <option className="option" value="lacto ovo vegetarian">Lacto Ovo Vegetarian</option>
-                    <option className="option" value="vegan">Vegan</option>
-                    <option className="option" value="pescatarian">Pescatarian</option>
-                    <option className="option" value="paleo">Paleo</option>
-                    <option className="option" value="primal">Primal</option>
-                    <option className="option" value="whole 30">Whole 30</option>
-                    <option className="option" value="fodmap friendly">Fodmap Friendly</option>
-                    <option className="option" value="fruitarian">Fruitarian</option>
-                    <option className="option" value="dairyFree">DairyFree</option> */}
-
-                {/* </oprgroup>
-            </select> */}
-
+            </select>
 
 
             <select className="filters_container" defaultValue="" onChange={handleSelect_order} name="" id="">
-                <option>Order By</option>
+                <option value="">Order By</option>
                 <optgroup className="optionGroup" label="Alphabetic">
                     <option className="option" value="a-z">A-Z</option>
                     <option className="option" value="z-a">Z-A</option>

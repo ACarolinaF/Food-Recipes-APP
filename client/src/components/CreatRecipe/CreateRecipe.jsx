@@ -1,16 +1,69 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './CreateRecipe.css';
 import { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getTypes } from "../../actions";
+import { postRecipe } from "../../actions";
 
+
+//COMPONENTS
 import NavBar from "../NavBar/NavBar";
+
+
+
+const validate = form =>{
+    let errors ={};
+
+    if(!form.name){
+        errors.name = 'Recipe name is required'
+    }else if(form.name.length <4){
+        errors.name = 'Recipe name must have at least 4 characters'
+    }
+
+    if(!form.summary){
+        errors.summary = 'Summary is required'
+    }else if(form.summary.length <8){
+        errors.summary = 'Summary must have at least 8 characters'
+    }
+
+    if(!form.score){
+        errors.score = 'Score is required'
+    }else if(form.score < 0 || form.score > 100){
+        errors.score = 'The score must be a number between 0 and 100'
+    }
+
+    if(!form.healthScore){
+        errors.healthScore = 'Health Score is required'
+    }else if(form.healthScore < 0 || form.healthScore > 100){
+        errors.healthScore = 'The Health Score must be a number between 0 and 100'
+    }
+
+    if(!form.steps){
+        errors.steps = 'Type the sptes of the recipe'
+    }
+    // else if(){}
+
+    return errors;
+}
 
 
 
 export default function CreateRecipe (){
 
-    const [errors, setErrors] = useState({form: 'Must complete the form'})
+    const history = useNavigate();
+    const dispatch = useDispatch();
+    const dietTypes = useSelector((state)=> state.dietTypes)
+
+
+    useEffect(()=>{
+        dispatch(
+            getTypes()
+        );
+    }, [])
+
+    const [errors, setErrors] = useState({})
 
     const [form, setForm] = useState({
         name: '',
@@ -21,72 +74,67 @@ export default function CreateRecipe (){
         diets: []
     });
 
+
     const handleChange = e =>{
-        if(e.target.parentNode.parentNode.id === 'dietTypes')
+        e.preventDefault();
+
+        setForm((prev) =>({
+            ...prev,
+            [e.target.name]: e.target.value
+        }))
 
         setErrors(validate({
             ...form,
             [e.target.name]: e.target.value
         }))
-        setForm(validate({
-            ...form,
-            [e.target.name]: e.target.value
-        }))
+
     };
 
-    const validate = form =>{
-        let errors ={};
-
-        if(!form.name){
-            errors.name = 'Recipe name is required'
-        }else if(form.name.length <4){
-            errors.name = 'Recipe name must have at leat 4 characters'
+    const handleSelect = e =>{
+        e.preventDefault();
+        if(!form.diets.includes(e.target.value)){
+            setForm({
+                ...form,
+                diets: [...form.diets, e.target.value]
+            })
         }
-
-        if(!form.summary){
-            errors.summary = 'Summary is required'
-        }else if(form.summary.length <8){
-            errors.summary = 'Summary must have at least 8 characters'
-        }
-
-        if(!form.score){
-            errors.score = 'Score is required'
-        }else if(!/^(?!$)(?:[0-9]{1,2}|100)$/gm.test(form.score)){
-            errors.score = 'The score must be a number between 0 and 100'
-        }
-
-        if(!form.healthScore){
-            errors.healthScore = 'Health Score is required'
-        }else if(!/^(?!$)(?:[0-9]{1,2}|100)$/gm.test(form.healthScore)){
-            errors.score = 'The Health Score must be a number between 0 and 100'
-        }
-
-        if(!form.steps){
-            errors.steps = 'Type the sptes of the recipe'
-        }
-        // else if(){}
-
-        return errors;
     }
 
-    const history = useNavigate();
+    const handleDelete = e =>{
+        e.preventDefault();
+        setForm({
+            ...form,
+            diets: form.diets.filter((d)=> d !== e.target.name)
+        })
+    }
+
 
     const handleSubmit = e =>{
-        e.preventDefault()
+        e.preventDefault();
 
         validate(form);
 
-        let checkboxsErrors= [];
-        if (form.diets.length < 1) checkboxsErrors.push('Diet Types are required');
-
-        if(Object.values(errors).length || checkboxsErrors.length){
-            return alert(Object.values(errors).concat(checkboxsErrors).join('\n'));
+        let dietSelectionError = [];
+        if(form.diets.length < 1){
+            dietSelectionError.push('Diet Types are requiered')
         }
 
+        if(Object.values(errors).length || dietSelectionError){
+            return alert(Object.values(errors).concat(dietSelectionError).join('\n'))
+        }
 
-        axios.post('http://localhost:3001/recipe', form)
-            .then(res => console.log(res.data))
-        alert(`${form.name} New Recipe Created Successfully`)
+        dispatch(postRecipe(form));
+
+        alert(`${form.name} Recipe Created Successfully`)
+
+        setForm({
+            name: '',
+            summary: '',
+            score: '',
+            healthScore: '',
+            steps: [],
+            diets: []
+        })
         history('/home')
     }
 
@@ -99,125 +147,62 @@ export default function CreateRecipe (){
             <div>
                 <h2>Create a Recipe</h2>
                 <div>
-                    <form onSubmit={handleSubmit} onChange={handleChange}>
+                    <form onSubmit={(e)=>handleSubmit(e)}>
                         
-                        <label htmlFor="name"><strong>Name:</strong></label><br/>
-                        <input placeholder="Name" type="text" id='name' name='name' autoComplete="off"/><br />
+                        
+                        <label><strong>Name:</strong></label><br/>
+                        <input 
+                            placeholder="Name" type="text" id='name' name='name' 
+                            value={form.name} onChange={(e)=>handleChange(e)} 
+                            autoComplete='off'/><br />
+                        {errors.name && <p>{errors.name}</p>}
 
-                        <label htmlFor="summary"><strong>Summary:</strong></label><br/>
-                        <textarea placeholder="Summary" id='summary' name='summary' cols='40' rows='10'/><br/>
+                        <label><strong>Summary:</strong></label><br/>
+                        <textarea placeholder="Summary" id='summary' name='summary' 
+                            cols='40' rows='10' 
+                            value={form.summary} onChange={(e)=>handleChange(e)} 
+                            autoComplete='off'/><br/>
+                        {errors.summary && <p>{errors.summary}</p>}
 
-                        <label htmlFor="score"><strong>Score:</strong></label><br/>
-                        <input placeholder="Score" id='score' name='score' type='tel' autoComplete='off'/><br/>
+                        <label><strong>Score:</strong></label><br/>
+                        <input placeholder="Score" id='score' name='score' type='number'
+                            value={form.score} onChange={(e)=>handleChange(e)}
+                            autoComplete='off'/><br/>
+                        {errors.score && <p>{errors.score}</p>}
 
                         <label htmlFor="healthScore"><strong>Health Score:</strong></label><br/>
-                        <input placeholder="healthScore" id='healthScore' name='healthScore' type='tel' autoComplete='off'/><br/>
+                        <input placeholder="healthScore" id='healthScore' name='healthScore' type='number' 
+                            value={form.healthScore} onChange={(e)=>handleChange(e)}
+                            autoComplete='off'/><br/>
+                        {errors.healthScore && <p>{errors.healthScore}</p>}
 
                         <label htmlFor="steps"><strong>Steps:</strong></label><br/>
-                        <textarea placeholder="Steps" id='steps' name='steps' cols='40' rows='10'/><br/>
+                        <textarea placeholder="Steps" id='steps' name='steps' type='text' 
+                            cols='40' rows='10'
+                            value={form.steps} onChange={(e)=>handleChange(e)}
+                            autoComplete='off'/><br/>
+                        {errors.steps && <p>{errors.steps}</p>}
 
-                        {/* <h4>Steps of the Recipe</h4>
-                        <p>{errors.steps}</p>
-                        <textarea
-                            name='steps'
-                            id='steps'
-                            value={form.steps}
-                            placeholder='Steps of the Recipe'
-                            onChange={handleChange}
-                            // className={}
-                        ></textarea> */}
+                        <label><strong>Select the Diet Types:</strong></label>
+                        <select onChange={(e)=>handleSelect(e)}>
+                            {dietTypes.map((e)=>(
+                            <option key={e.name} value={e.name}>{e.name}</option>
+                            ))}
+                        </select>
 
-                        {/* <h4>Score</h4>
-                        <p>{errors.score}</p>
-                        <input
-                            type='text'
-                            id='score'
-                            // value={form.score}
-                            placeholder='Score'
-                            onChange={handleChange}
-                            // className={}
-                        /> */}
-
-
-                        {/* <h4>Summary</h4>
-                        <p>{errors.summary}</p>
-                        <textarea
-                            name='summary'
-                            id='summary'
-                            value={form.summary}
-                            placeholder='Summary'
-                            onChange={handleChange}
-                            // className={}
-                        ></textarea> */}
-
-
-                        {/* <h4>Name</h4>
-                        <p>{errors.name}</p>
-                        <input
-                            type='text'
-                            id='name'
-                            value={form.name}
-                            placeholder='Name'
-                            onChange={handleChange}
-                            // className={}
-                        /> */}
-
-
-
-                        {/* <h4>Health Score</h4>
-                        <p>{errors.healthScore}</p>
-                        <input
-                            type='text'
-                            id='healthScore'
-                            value={form.healthScore}
-                            placeholder='Health Score'
-                            onChange={handleChange}
-                            // className={}
-                        /> */}
-
-                        
-                        <div id='dietTypes'>
-                            <h4>Diet Types</h4>
-
-                                <input name='gluten free' value='1' type='checkbox' id='gluten free'/>
-                                <label>Gluten Free</label>
-
-                                <input name='paleolithic' value='2' type='checkbox' id='paleolithic'/>
-                                <label>Paleolithic</label>
-
-                                <input name='vegetarian' value='3' type='checkbox' id='vegetarian'/>
-                                <label>Vegetarian</label>
-
-                                <input name='lacto ovo vegetarian' value='4' type='checkbox' id='lacto ovo vegetarian'/>
-                                <label>Lacto Ovo Vegetarian</label>
-
-                                <input name='vegan' value='5' type='checkbox' id='vegan'/>
-                                <label>Vegan</label>
-
-                                <input name='pescatarian' value='6' type='checkbox' id='pescatarian'/>
-                                <label>Pescatarian</label>
-
-                                <input name='paleo' value='7' type='checkbox' id='paleo'/>
-                                <label>Paleo</label>
-
-                                <input name='primal' value='8' type='checkbox' id='primal'/>
-                                <label>Primal</label>
-
-                                <input name='whole 30' value='9' type='checkbox' id='whole 30'/>
-                                <label>Whole 30</label>
-
-                                <input name='fodmap friendly' value='10' type='checkbox' id='fodmap friendly'/>
-                                <label>Fodmap Friendly</label>
-
-                                <input name='fruitarian' value='11' type='checkbox' id='fruitarian'/>
-                                <label>Fruitarian</label>
-
-                                <input name='dairyFree' value='12' type='checkbox' id='dairyFree'/>
-                                <label>DairyFree</label>
-                        </div>
                         <div>
-                            <button type='submit'>Create this Recipe</button>
+                            {form.diets.map((e)=>(
+                                <div key={e}>
+                                    {e}
+                                    <button name={e} onClick={(e)=>handleDelete(e)}>X</button>
+                                </div>
+                            ))}
                         </div>
+
+                        <div>
+                            <button type='submit'>Create</button>
+                        </div>
+
 
                     </form>
                 </div>

@@ -13,12 +13,12 @@ export default function SearchBar(){
     const dispatch = useDispatch();
 
     const handleOnChange = (e)=>{
-        // e.preventdefault();
+        e.preventDefault();
         setInput(e.target.value)
     }
 
     const handleSubmit = (e) => {
-        // e.preventdefault();
+        e.preventDefault();
         dispatch(
             searchName(input)
         );
@@ -27,7 +27,7 @@ export default function SearchBar(){
 
     const handleEnter = (e) =>{
         if(e.key === 'Enter'){
-            // e.preventdefault();
+            e.preventDefault();
             dispatch(
                 searchName(input)
             );
@@ -36,7 +36,7 @@ export default function SearchBar(){
     }
 
     return (
-        <div>
+        <div className="container_principal">
             <input 
                 className="input"
                 type='text' 

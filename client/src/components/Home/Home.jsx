@@ -63,7 +63,11 @@ export default function Home (){
 
     const handleSelect_order = (e) =>{
         // e.preventdefault()
-        dispatch(order(e.target.value))
+        if(e.target.value === ""){
+            dispatch(getRecipes())
+        }else{
+            dispatch(order(e.target.value))
+        }
         setCurrentPage(1);
     }
 
@@ -96,8 +100,6 @@ export default function Home (){
                     />
                 ) : <h1>Uups</h1>)
                 }
-
-
             </div>
 
         </div>

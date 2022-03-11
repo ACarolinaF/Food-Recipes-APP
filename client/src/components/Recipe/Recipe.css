@@ -13,18 +13,18 @@
 
 .principal_div{
     padding: 0;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     background-color: #F1FAFF;
     max-width: 1200px;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 50px;
+
 }
 
 
 /* card */
 .recipe_div{ 
     /* border: 2px solid black; */
-    background-color: #FFD879;
     border-radius: 20px;
     text-decoration: none;
     text-align: center;
@@ -34,28 +34,30 @@
     /* padding: 5px; */
     /* display: flex;
     flex-wrap: wrap; */
-    text-transform: capitalize;
+    text-transform: capitalize; 
+    transition: all 800ms;
+}
+
+
+.recipe_div {
+    background: #FFD879;
+    background: linear-gradient(0deg, #FFD879 0%, #faca51 100%);
+    border: none;
+    height: 470px;
     
 }
-.recipe_div:hover{
-    background-color: #FFC78C;
-    width: 310px;
-    /* height: 37em; */
-    /* height: 300px; */
-    transition: all 1000ms;
+
+.recipe_div:before {
+    height: 0%;
+    width: 2px;
 }
-.recipe_div:hover .img{
-    width: 310px;
-    transition: all 1000ms;
+
+.recipe_div:hover {
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+            -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
 }
-.recipe_div:hover .info_div{
-    /* width: 310px; */
-    transition: all 1000ms;
-    background-color: #FFC78C;
-}
-/* .recipe_div:hover .button_container{
-    /* background-color: black; */
-/* } */ 
 
 
 .navlink_container{
@@ -66,16 +68,50 @@
 .button_container{
     padding: 7px 25px;
     margin-top: 15px;
+    margin-bottom: 10px;
     border: none;
-    /* background-color: #BEB5C6; */
     background-color: #DEC4AC;
     color: #112a46cf;
     font-size: 14px;
     cursor: pointer;
     border-radius: 8px;
     transition: all 3000ms;
-
+    align-items: flex-end;
+    
 }
+
+/* .button_container {
+    border: none;
+    color: #000;
+} */
+
+.button_container:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    direction: rtl;
+    z-index: -1;
+    box-shadow:
+     -7px -7px 20px 0px #fff9,
+     -4px -4px 5px 0px #fff9,
+     7px 7px 20px 0px #0002,
+     4px 4px 5px 0px #0001;
+    transition: all 0.3s ease;
+}
+  .button_container:hover {
+    color: #000;
+  }
+  .button_container:hover:after {
+    left: auto;
+    right: 0;
+    width: 100%;
+  }
+  .button_container:active {
+    top: 2px;
+  }
 
 
 /* card cover */
@@ -112,6 +148,10 @@
     /* font-family: 'Comfortaa', cursive; */
     font-size: 2.3em;
     color: #112A46;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .info_div h4{

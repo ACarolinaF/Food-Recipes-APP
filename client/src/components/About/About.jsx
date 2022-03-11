@@ -13,7 +13,7 @@ export default function About (){
         
         <div className="about_container">
             <NavBar />
-            <h2 className="title_container"> Individual Project - Henry Bootcmap</h2>
+            <h2 className="title_container"> Individual Project - Henry Bootcamp</h2>
             <h3 className="name_container">Carolina Fernandes</h3>
             <h2 className="contact_container">Contact me</h2>
 

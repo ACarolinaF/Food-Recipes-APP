@@ -65,28 +65,19 @@ function rootReducer (state = inicialState , action){
                     //si son un numero es porque pertenencen a la API
                 }
             }
+            break;
 
         
         case FILTER_BY_DIETS:
 
-            const allrecipes = state.recipes
+            const allrecipes = state.recipesBackup
             const typeFiltered = action.payload === 'all' ? allrecipes :
-                allrecipes.filter(e => e.diets.include(action.payload));
+                allrecipes.filter(e => e.diets.includes(action.payload));
 
             return {
                 ...state,
                 recipes: typeFiltered
-            }
-
-
-            // const recipes = state.recipes
-            // const dietFiltered = recipes.diets.map(r=> r.includes(action.paylod))
-
-            // return{
-            //     ...state,
-            //     recipes: dietFiltered
-            // }
-                
+            } ;
 
 
         case ORDER_BY:

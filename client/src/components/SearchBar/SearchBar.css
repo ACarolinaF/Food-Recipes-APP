@@ -2,20 +2,23 @@
 
 .input{
     margin: 10px 0px 10px 10px;
-    padding: 7px 25px;
+    /* padding: 7px 25px; */
     border-radius: 8px 0px 0px 8px;
-    border: 1.5px solid #c49b74;
+    border: 1px solid #c49b74;
     background-color: #DEC4AC;
     font-size: 14px;
+    width: 150px;
+    height: 25px;
 }
 
 .find{
     margin: 10px 10px 10px 0px;
-    padding: 7.2px 10px;
+    /* padding: 7px 10px; */
     border: none;
     background-color: #c49b74;
     cursor: pointer;
     border-radius: 0px 8px 8px 0px;
     transition: all 3000ms;
-    font-size: 14px;
+    width: 25px;
+    height: 25px;
 }
