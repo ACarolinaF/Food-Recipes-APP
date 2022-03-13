@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import './CreateRecipe.css';
 import { useState } from "react";
-import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getTypes } from "../../actions";
@@ -14,12 +13,19 @@ import NavBar from "../NavBar/NavBar";
 
 
 const validate = form =>{
+    let URL = /^(www)?.+\.[a-z]{2,6}(\.[a-z]{2,6})?.+\.[a-z]{2,4}$/;
     let errors ={};
 
     if(!form.name){
         errors.name = 'Recipe name is required'
     }else if(form.name.length <4){
         errors.name = 'Recipe name must have at least 4 characters'
+    }
+
+    if(!form.image){
+        errors.image = 'You should provide an URL image or we will update your recipe with a default one';
+    }else if(!URL.test(form.image)){
+        errors.image = "The image uploaded must be an URL";
     }
 
     if(!form.summary){
@@ -41,9 +47,8 @@ const validate = form =>{
     }
 
     if(!form.steps){
-        errors.steps = 'Type the sptes of the recipe'
+        errors.steps = 'Type the steps of the recipe'
     }
-    // else if(){}
 
     return errors;
 }
@@ -67,6 +72,7 @@ export default function CreateRecipe (){
 
     const [form, setForm] = useState({
         name: '',
+        image:'',
         summary: '',
         score: '',
         healthScore: '',
@@ -109,6 +115,35 @@ export default function CreateRecipe (){
     }
 
 
+    // const handleStepsOnChange = e =>{
+    //     e.preventDefault();
+
+    //     let stepsArray = form.steps;
+    //     stepsArray[stepsArray.length]=e.target.value;
+    // }
+
+    // const handleAddStep = e =>{
+    //     e.preventDefault()
+    //     let new_steps = form.steps;
+    //     new_steps = new_steps.push(e.target.value);
+    //     setForm({
+    //         ...form,
+    //         steps: new_steps
+    //     })
+    // }
+
+    // const handleRemoveStep = e =>{
+    //     e.preventDefault()
+    //     let newSteps = form.steps;
+    //     if(newSteps.length > 0) newSteps.pop();
+    //     setForm({
+    //         ...form,
+    //         steps: newSteps
+    //     });
+    // }
+
+
+
     const handleSubmit = e =>{
         e.preventDefault();
 
@@ -129,6 +164,7 @@ export default function CreateRecipe (){
 
         setForm({
             name: '',
+            image: '',
             summary: '',
             score: '',
             healthScore: '',
@@ -141,66 +177,97 @@ export default function CreateRecipe (){
 
 
     return(
-        <div>
+        <div className="a_div">
             <NavBar/>
 
-            <div>
-                <h2>Create a Recipe</h2>
+            <div className="principal_div">
+                <h2 className="title">Create a Recipe</h2>
                 <div>
-                    <form onSubmit={(e)=>handleSubmit(e)}>
+                    <form className="form" onSubmit={(e)=>handleSubmit(e)}>
                         
                         
-                        <label><strong>Name:</strong></label><br/>
-                        <input 
+                        <h3 className="h3-name"><strong>Name:</strong></h3><br/>
+                        <input
+                            className="input_name"
                             placeholder="Name" type="text" id='name' name='name' 
                             value={form.name} onChange={(e)=>handleChange(e)} 
                             autoComplete='off'/><br />
-                        {errors.name && <p>{errors.name}</p>}
+                        {errors.name && <p className="error">{errors.name}</p>}
 
-                        <label><strong>Summary:</strong></label><br/>
-                        <textarea placeholder="Summary" id='summary' name='summary' 
+                        <h3 className="h3_image">Image:</h3>
+                        <input
+                            className="input_image"
+                            placeholder="Image" type="text" id='image' name='image'
+                            value={form.image} onChange={(e)=>handleChange(e)}
+                            autoComplete='off'
+                            />
+                        {errors.image && <p className="error">{errors.image}</p>}
+
+                        <h3 className="h3-summary"><strong>Summary:</strong></h3><br/>
+                        <textarea 
+                            className="input_summary"
+                            placeholder="Summary" id='summary' name='summary' 
                             cols='40' rows='10' 
                             value={form.summary} onChange={(e)=>handleChange(e)} 
                             autoComplete='off'/><br/>
-                        {errors.summary && <p>{errors.summary}</p>}
+                        {errors.summary && <p className="error">{errors.summary}</p>}
 
-                        <label><strong>Score:</strong></label><br/>
-                        <input placeholder="Score" id='score' name='score' type='number'
+                        <h3 className="h3_score"><strong>Score:</strong></h3><br/>
+                        <input 
+                            className="input_score"
+                            placeholder="Score" id='score' name='score' type='number'
                             value={form.score} onChange={(e)=>handleChange(e)}
                             autoComplete='off'/><br/>
-                        {errors.score && <p>{errors.score}</p>}
+                        {errors.score && <p className="error">{errors.score}</p>}
 
-                        <label htmlFor="healthScore"><strong>Health Score:</strong></label><br/>
-                        <input placeholder="healthScore" id='healthScore' name='healthScore' type='number' 
+                        <h3 className="h3_hScore"><strong>Health Score:</strong></h3><br/>
+                        <input 
+                            className="input_hScore"
+                            placeholder="healthScore" id='healthScore' name='healthScore' type='number' 
                             value={form.healthScore} onChange={(e)=>handleChange(e)}
                             autoComplete='off'/><br/>
-                        {errors.healthScore && <p>{errors.healthScore}</p>}
+                        {errors.healthScore && <p className="error">{errors.healthScore}</p>}
 
-                        <label htmlFor="steps"><strong>Steps:</strong></label><br/>
-                        <textarea placeholder="Steps" id='steps' name='steps' type='text' 
+                        <h3 className="h3_steps"><strong>Steps:</strong></h3><br/>
+                        <textarea 
+                            className="input_steps"
+                            placeholder="Steps" id='steps' name='steps' type='text' 
                             cols='40' rows='10'
                             value={form.steps} onChange={(e)=>handleChange(e)}
                             autoComplete='off'/><br/>
-                        {errors.steps && <p>{errors.steps}</p>}
+                        {errors.steps && <p className="error">{errors.steps}</p>}
 
-                        <label><strong>Select the Diet Types:</strong></label>
-                        <select onChange={(e)=>handleSelect(e)}>
+
+                        {/* <h3>Steps:</h3>
+                        <button onClick={handleAddStep}>+</button>
+                        <button onClick={handleRemoveStep}>-</button>
+                        <ol>
+                            {form.steps.map( step => (
+                                <li key={step}>
+                                    <input type='text' id={step} name='Instructions' autoComplete="off" onChange={handleStepsOnChange}/>
+                                </li>
+                            ))}
+                        </ol> */}
+
+
+                        <h3 className="h3_dTypes"><strong>Select the Diet Types:</strong></h3>
+                        <select className='select_diets'onChange={(e)=>handleSelect(e)}>
                             {dietTypes.map((e)=>(
                             <option key={e.name} value={e.name}>{e.name}</option>
                             ))}
                         </select>
 
-                        <div>
+                        <div className="selection_div">
                             {form.diets.map((e)=>(
                                 <div key={e}>
                                     {e}
-                                    <button name={e} onClick={(e)=>handleDelete(e)}>X</button>
+                                    <button className='btn_x'name={e} onClick={(e)=>handleDelete(e)}>X</button>
                                 </div>
                             ))}
                         </div>
 
                         <div>
-                            <button type='submit'>Create</button>
+                            <button className='btn_submit'type='submit'>Create</button>
                         </div>
 
 
