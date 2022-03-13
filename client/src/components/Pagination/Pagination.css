@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #05283b;
 }
 
 ul{
@@ -13,6 +14,7 @@ li{
     list-style: none;
     margin: 2px;
     width: 30px;
+
 }
 
 .button_pag{
@@ -27,4 +29,5 @@ li{
     border-radius: 8px;
     transition: all 3000ms;
     width: 2em;
+    font-weight: bold;
 }

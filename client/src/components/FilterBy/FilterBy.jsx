@@ -12,7 +12,8 @@ export default function FilterBy({allDietTypes, handleSelect_filter, handleSelec
     
 
     return(
-        <div className="filter_container">
+        <div className="initial">
+        <div className="principal_div">
             <select className="select_container" onChange={handleSelect_filter} name="" id="">
                 <option className="option" value="allrecipes">All Recipes</option> 
 
@@ -48,6 +49,7 @@ export default function FilterBy({allDietTypes, handleSelect_filter, handleSelec
                 </optgroup>
 
             </select>
+        </div>
         </div>
     )
 

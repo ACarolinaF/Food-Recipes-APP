@@ -2,12 +2,13 @@
 
 
 .navBar_container{
-    background-color: #F1FAFF;
+    background-color: #05283b;
 }
 
 .navlink{
     padding: 7px 25px;
-    margin: 10px;
+    margin: 5px;
+    margin-top: 20px;
     border: none;
     /* background-color: #BEB5C6; */
     background-color: #DEC4AC;

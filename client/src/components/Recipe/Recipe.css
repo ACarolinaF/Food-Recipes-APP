@@ -23,40 +23,29 @@
 
 
 /* card */
-.recipe_div{ 
-    /* border: 2px solid black; */
+.recipe_div {
     border-radius: 20px;
     text-decoration: none;
     text-align: center;
     width: 300px;
-    /* height: 33em; */
     margin: 10px;
-    /* padding: 5px; */
-    /* display: flex;
-    flex-wrap: wrap; */
-    text-transform: capitalize; 
-    transition: all 800ms;
-}
-
-
-.recipe_div {
     background: #FFD879;
     background: linear-gradient(0deg, #FFD879 0%, #faca51 100%);
     border: none;
-    height: 470px;
+    height: 400px;
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+                -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+                inset -4px -4px 6px 0 rgba(255,255,255,.2),
+                inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+    text-transform: capitalize; 
+    transition: all 800ms;
+    /* border: #000 solid 3px; */
     
 }
 
-.recipe_div:before {
-    height: 0%;
-    width: 2px;
-}
 
 .recipe_div:hover {
-    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
-            -4px -4px 6px 0 rgba(116, 125, 136, .5), 
-    inset -4px -4px 6px 0 rgba(255,255,255,.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+    background-color: #ffac79;
 }
 
 
@@ -140,8 +129,8 @@
     padding: 10px;
     border-radius: 0px 0px 20px 20px;
     align-content:stretch;
-    
 }
+
 .info_div h2{
     /* border: solid blueviolet; */
     font-family: 'Amatic SC', cursive;

@@ -15,10 +15,12 @@
     margin: 10px 10px 10px 0px;
     /* padding: 7px 10px; */
     border: none;
+    /* border: 1px solid #c49b74; */
     background-color: #c49b74;
+    background-color: transparent;
     cursor: pointer;
     border-radius: 0px 8px 8px 0px;
     transition: all 3000ms;
     width: 25px;
-    height: 25px;
+    height: 29px;
 }

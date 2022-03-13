@@ -76,7 +76,7 @@ export default function Home (){
         <div className="home_container">
             <div>
             <NavBar/>
-            <SearchBar/>
+            {/* <SearchBar/> */}
             <FilterBy
                 allDietTypes={allDietTypes}
                 handleSelect_filter={handleSelect_filter}

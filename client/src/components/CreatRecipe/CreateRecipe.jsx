@@ -22,10 +22,13 @@ const validate = form =>{
         errors.name = 'Recipe name must have at least 4 characters'
     }
 
-    if(!form.image){
-        errors.image = 'You should provide an URL image or we will update your recipe with a default one';
-    }else if(!URL.test(form.image)){
-        errors.image = "The image uploaded must be an URL";
+    // if(!form.image){
+    //     errors.image = 'You should provide an URL image or we will update your recipe with a default one';
+    // }else 
+    if(form.image){
+        if(!URL.test(form.image)){
+            errors.image = "The image uploaded must be an URL";
+        }
     }
 
     if(!form.summary){
