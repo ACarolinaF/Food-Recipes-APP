@@ -11,6 +11,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&display=swap');
 /* font-family: 'Comfortaa', cursive; */
 
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Sansita:ital,wght@1,700&display=swap');
+/* font-family: 'Sansita', sans-serif; */
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@400&display=swap');
+/* font-family: 'Josefin Slab', serif; */
+
+
+
 .principal_div{
     padding: 0;
     /* box-sizing: border-box; */
@@ -136,7 +150,8 @@
     /* border: solid blueviolet; */
     font-family: 'Amatic SC', cursive;
     /* font-family: 'Comfortaa', cursive; */
-    font-size: 2.3em;
+    /* font-family: 'Sansita', sans-serif; */
+    font-size: 2em;
     color: #112A46;
     text-align: center;
     white-space: nowrap;
@@ -147,6 +162,8 @@
 .info_div h4{
     /* border: solid goldenrod; */
     font-family: 'Lato', sans-serif;
+    /* font-family: 'Josefin Slab', serif; */
+    font-weight:bolder;
     margin: 0.3em;
     color: #112A46;
 }

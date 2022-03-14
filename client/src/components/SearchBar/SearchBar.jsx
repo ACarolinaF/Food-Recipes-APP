@@ -5,6 +5,8 @@ import './SearchBar.css';
 
 import { searchName } from "../../actions";
 
+import loupe from "../../img/SearchBar/loupe.png";
+
 
 export default function SearchBar(){
 
@@ -36,9 +38,9 @@ export default function SearchBar(){
     }
 
     return (
-        <div className="container_principal">
+        <div className="searBar_container_principal">
             <input 
-                className="input"
+                className="searchBar_input"
                 type='text' 
                 placeholder="Find your recipe here..." 
                 onChange={handleOnChange}
@@ -47,10 +49,10 @@ export default function SearchBar(){
             />
 
             <button 
-                className="find"
+                className="searchBar_go"
                 type='submit' 
                 onClick={e=>handleSubmit(e)}
-            >🔎
+            >GO!
             </button>
         </div>
     )

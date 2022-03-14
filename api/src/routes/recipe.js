@@ -12,9 +12,7 @@ router.post('/', async (req, res)=>{
         score,
         healthScore,
         steps,
-        diets,
-        dishTypes,
-        cuisines,
+        diets
         
     } = req.body;
 
@@ -27,8 +25,6 @@ router.post('/', async (req, res)=>{
             healthScore: healthScore,
             steps: steps,
             diets: diets,
-            dishTypes: dishTypes,
-            cuisines: cuisines
         })
         let diet_db = await Diet.findAll({
             where: {name: diets}

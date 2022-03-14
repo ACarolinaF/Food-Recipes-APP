@@ -7,6 +7,7 @@ export default function Landing(){
     <div className="landing_div">
         {/* <h1>Welcome</h1> */}
         <Link to='/home'><button className="landing_button">Let's Cook</button></Link>
+        <div className="landing_space">-</div>
     </div>
     )
 }

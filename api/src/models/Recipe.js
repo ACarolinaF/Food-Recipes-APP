@@ -26,7 +26,7 @@ module.exports = (sequelize) => {
     },
     steps:{
       type: DataTypes.ARRAY(DataTypes.STRING) //confirmar
-      //type: Datatypes.ARRAY(DataTypes.STRING)
+      // type: DataTypes.STRING
     },
     readyInMinutes:{
       type: DataTypes.INTEGER

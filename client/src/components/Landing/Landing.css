@@ -1,13 +1,26 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Sansita:ital,wght@1,700&display=swap');
+/* font-family: 'Sansita', sans-serif; */
+
+
 .landing_div{
-    background-image: url('../../img/spaghetti-73.gif') ;
+    background-image: url('../../img/Landing/landing.gif') ;
     /* background-image: url('../../img/spaghetti-73-unscreen.gif'); */
     /* background-image: url('../../img/food_all-giphy.gif'); */
 
-    height: 100%;
+    /* height: 100%; */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    /* width: 25%; */
     
+    
+}
+
+.landing_space{
+    color: transparent;
+    height: 20em;
 }
 
 .landing_button{
@@ -16,11 +29,13 @@
     margin-bottom: 550px;
     border: none;
    /* background-color: #BEB5C6;  */
-    background-color: #DEC4AC;
-    color: #112a46cf;
-    font-size: 30px;
+    background-color: #7B0000;
+    color: #DEBE69;
+    font-size: 50px;
     cursor: pointer;
     border-radius: 8px;
     transition: all 3000ms;
+    font-family: 'Sansita', sans-serif;
+    /* background-color: transparents; */
 }
 

@@ -16,8 +16,6 @@ import Loading from "../Loading/Loading";
 
 
 //img
-import loader from "../../img/Loader/loader.gif";
-import ups from "../../img/llorando.gif"
 import empty from "../../img/Empty/empty.gif";
 
 
@@ -43,7 +41,7 @@ export default function Home (){
         //-----------------//
     
     const [loading, setLoading] = useState(true); 
-    const loading_s = useSelector(state=>state.loading);
+
 
     const dispatch = useDispatch();
 
@@ -99,15 +97,6 @@ export default function Home (){
             </div>
             
             <div className="recipe_container">
-                {/* {allRecipes && (allRecipes.length > 0 ? (
-                    <RecipeCards
-                    recipes={currentCards}
-                    />
-                ) : <div>
-                        <img className="loader"src={loader} alt="Loading"/>
-                        <div className="space_div">-</div>
-                    </div>)
-                } */}
                 {
                     loading ?
                         (<Loading/>
@@ -127,7 +116,7 @@ export default function Home (){
                         )
                 }
             </div>
-
+            <div className="last_div">-</div>
         </div>
     )
 }

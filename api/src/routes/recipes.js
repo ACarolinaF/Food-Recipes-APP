@@ -34,14 +34,14 @@ router.get('/', async(req, res)=>{
                     summary: r.summary,
                     score: r.spoonacularScore,
                     healthScore: r.healthScore,
-                    steps: r.analyzedInstructions.map(a=> a.steps.map(b=> b.step)).flat(1).join(""),
+                    // steps: r.analyzedInstructions.map(a=> a.steps.map(b=> b.step)).flat(1).join(""),
                     diets: r.diets,
                     dishTypes: r.dishTypes,
                     cuisines: r.cuisines
                 }
             })
 
-            const all_recipes = api_results.concat(recipes_DB);
+            const all_recipes = recipes_DB.concat(api_results);
 
             const resp = [];
 

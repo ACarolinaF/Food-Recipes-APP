@@ -20,7 +20,7 @@ export default function RecipeCards({recipes}){
                         sumary={r.sumary}
                         score={r.score}
                         healthScore={r.healthScore}
-                        steps={r.steps}
+                        // steps={r.steps}
                         diets={r.diets}
                         dishTypes={r.dishTypes}
                         cuisines={r.cuisines}

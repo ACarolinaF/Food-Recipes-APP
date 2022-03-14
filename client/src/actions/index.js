@@ -92,7 +92,7 @@ export function order(order_key){
 export function postRecipe(new_recipe){
     try {
         return async function(dispatch){
-            var response = await axios.post(`http://localhost:3001/recipe`);
+            var response = await axios.post(`http://localhost:3001/recipe`, new_recipe);
             return dispatch({
                 type: POST_RECIPE,
                 payload: response.data

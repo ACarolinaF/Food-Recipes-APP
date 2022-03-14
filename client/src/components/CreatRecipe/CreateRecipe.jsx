@@ -154,12 +154,12 @@ export default function CreateRecipe (){
 
         let dietSelectionError = [];
         if(form.diets.length < 1){
-            dietSelectionError.push('Diet Types are requiered')
+            dietSelectionError.push('Diet Types are required')
         }
 
-        if(Object.values(errors).length || dietSelectionError){
-            return alert(Object.values(errors).concat(dietSelectionError).join('\n'))
-        }
+        // if(Object.values(errors).length || dietSelectionError){
+        //     return alert(Object.values(errors).concat(dietSelectionError).join('\n'))
+        // }
 
         dispatch(postRecipe(form));
 
