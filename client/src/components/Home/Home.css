@@ -6,6 +6,9 @@
     justify-content: space-evenly; */
 }
 
+.nav_filter_container{
+    background-color: #05283b;
+}
 
 /* .recipe_container{
     display: flex;
@@ -23,4 +26,10 @@
     /* align-items: center; */
     /* min-height: 100vh; */
     /* background-color: #F1FAFF; */
+}
+
+
+.empty_space{
+    color: transparent;
+    height: 30em;
 }
