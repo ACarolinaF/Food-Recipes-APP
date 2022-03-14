@@ -9,7 +9,7 @@ export default function Recipe(props){
     return(
         <div className="principal_div_recipe">
             {props.id && (
-            <NavLink to={`/recipe/${props.id}`} className="navlink_container">
+            <NavLink to={`/recipe/${props.id}`} className="navlink_container_recipe">
                 <div className="recipe_div">
                     <div className="img_div">
                         {props.image? (
@@ -20,11 +20,12 @@ export default function Recipe(props){
                     </div>
                     <div className="info_div">
                         <h2> {props.name}</h2>
-                        <h4> <strong>Diet Type:</strong> {props.diets.join(", ")}</h4>
-                        <h4> <strong>Score:</strong> {props.score} %</h4>
-                        {/* <h4> <strong>Cuisines:</strong> {props.cuisines.join(", ")}</h4> */}
+                        <h4> Diet Type:</h4>
+                            <h5>{props.diets.join(", ")}</h5> 
+                        <h4> Score: </h4>
+                            <h5>{props.score} %</h5>
                     </div>
-                </div>
+                </div>s
             </NavLink>
             )}
 

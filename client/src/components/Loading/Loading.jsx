@@ -1,5 +1,6 @@
 import React from "react";
 import loader from "../../img/Loader/loader.gif"
+import './Loading.css';
 
 export default function Loading (){
     return(

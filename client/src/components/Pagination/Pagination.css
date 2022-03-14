@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
     background-color: #05283b;
+    border-radius: 0px 0px 25px 25px;
 }
 
 ul{
@@ -12,9 +13,14 @@ ul{
 
 li{
     list-style: none;
-    margin: 2px;
+    padding: 0%;
+    margin-right: 3px;
+    margin-left: 3px;
+    margin-top: -15px;
+    margin-bottom: -15px;
     width: 30px;
-
+    align-items: center;
+    /* display: flex; */
 }
 
 .button_pag{
@@ -22,7 +28,7 @@ li{
     margin: 10px;
     border: none;
     /* background-color: #BEB5C6; */
-    background-color: #DEC4AC;
+    background-color: #FFD879;
     color: #112a46cf;
     font-size: 14px;
     cursor: pointer;

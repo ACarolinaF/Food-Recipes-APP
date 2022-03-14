@@ -32,7 +32,6 @@
     max-width: 1200px;
     margin: auto;
     margin-top: 50px;
-    border: solid orange
 
 }
 
@@ -64,7 +63,7 @@
 }
 
 
-.navlink_container{
+.navlink_container_recipe{
     /* border: solid brown; */
     text-decoration: none;    
 }
@@ -160,6 +159,15 @@
 }
 
 .info_div h4{
+    /* border: solid goldenrod; */
+    font-family: 'Lato', sans-serif;
+    /* font-family: 'Josefin Slab', serif; */
+    font-weight:bolder;
+    margin: 0.3em;
+    color: #112A46;
+}
+
+.info_div h5{
     /* border: solid goldenrod; */
     font-family: 'Lato', sans-serif;
     /* font-family: 'Josefin Slab', serif; */
