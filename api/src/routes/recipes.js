@@ -72,6 +72,9 @@ router.get('/', async(req, res)=>{
         }
     }else{
         try {
+            let response_recipes_DB = await Recipe.findAll({
+                include: Diet
+            })
 
             let recipe_api = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`);
 
@@ -90,7 +93,8 @@ router.get('/', async(req, res)=>{
                 }
             })
 
-            res.json(recipe_response);
+            let final_res = [...response_recipes_DB, ...recipe_response]
+            res.json(final_res);
             
         } catch (error) {
             console.log(error);
@@ -131,9 +135,7 @@ router.get('/:id', async (req, res)=>{
                 summary: response.data.summary,
                 score: response.data.spoonacularScore,
                 healthScore: response.data.healthScore,
-                steps: response.data.analyzedInstructions.map(instructions =>{
-                    return instructions.steps.map(s => s.step)
-                }), //.flat(),
+                steps: response.data.analyzedInstructions[0].steps?.map(s=> {return{number: s.number, step: s.step}}),
                 diets: response.data.diets,
                 dishTypes: response.data.dishTypes,
                 cuisines: response.data.cuisines

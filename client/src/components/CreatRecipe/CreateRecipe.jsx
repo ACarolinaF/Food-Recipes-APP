@@ -22,9 +22,6 @@ const validate = form => {
         errors.name = 'Recipe name must have at least 4 characters'
     }
 
-    // if(!form.image){
-    //     errors.image = 'You should provide an URL image or we will update your recipe with a default one';
-    // }else 
     if (form.image) {
         if (!URL.test(form.image)) {
             errors.image = "The image uploaded must be an URL";
@@ -60,7 +57,7 @@ const validate = form => {
 
 export default function CreateRecipe() {
 
-    const history = useNavigate();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const dietTypes = useSelector((state) => state.dietTypes)
 
@@ -79,7 +76,7 @@ export default function CreateRecipe() {
         summary: '',
         score: '',
         healthScore: '',
-        steps: [[]],
+        steps: '',
         diets: []
     });
 
@@ -105,6 +102,10 @@ export default function CreateRecipe() {
             ...prev,
             steps: [[e.target.name]]
         }))
+        setErrors(validate({
+            ...form,
+            [e.target.name]: e.target.value
+        }))
     }
 
     const handleSelect = e => {
@@ -126,52 +127,52 @@ export default function CreateRecipe() {
     }
 
 
-    // const handleStepsOnChange = e =>{
-    //     e.preventDefault();
+    const handleStepsOnChange = e =>{
+        e.preventDefault();
 
-    //     let stepsArray = form.steps;
-    //     stepsArray[stepsArray.length]=e.target.value;
-    // }
+        let stepsArray = form.steps;
+        stepsArray[0]=e.target.value;
+    }
 
-    // const handleAddStep = e =>{
-    //     e.preventDefault()
-    //     let new_steps = form.steps;
-    //     new_steps = new_steps.push(e.target.value);
-    //     setForm({
-    //         ...form,
-    //         steps: new_steps
-    //     })
-    // }
+    const handleAddStep = e =>{
+        e.preventDefault()
+        let new_steps = form.steps;
+        new_steps = new_steps[0].push(e.target.value);
+        setForm({
+            ...form,
+            steps: new_steps
+        })
+    }
 
-    // const handleRemoveStep = e =>{
-    //     e.preventDefault()
-    //     let newSteps = form.steps;
-    //     if(newSteps.length > 0) newSteps.pop();
-    //     setForm({
-    //         ...form,
-    //         steps: newSteps
-    //     });
-    // }
+    const handleRemoveStep = e =>{
+        e.preventDefault()
+        let newSteps = form.steps;
+        if(newSteps[0].length > 1) newSteps.pop();
+        setForm({
+            ...form,
+            steps: newSteps
+        });
+    }
 
 
 
     const handleSubmit = e => {
         e.preventDefault();
-
-        validate(form);
+        setErrors(validate(form));
 
         let dietSelectionError = [];
         if (form.diets.length < 1) {
             dietSelectionError.push('Diet Types are required')
         }
 
-        // if(Object.values(errors).length || dietSelectionError){
-        //     return alert(Object.values(errors).concat(dietSelectionError).join('\n'))
-        // }
+        if(Object.values(errors).length || dietSelectionError.length){
+            return alert(Object.values(errors).concat(dietSelectionError).join('\n'))
+        }
 
         dispatch(postRecipe(form));
 
-        alert(`${form.name} Recipe Created Successfully`)
+        alert(`${form.name} Recipe Created Successfully`);
+        navigate('/home')
 
         setForm({
             name: '',
@@ -179,10 +180,10 @@ export default function CreateRecipe() {
             summary: '',
             score: '',
             healthScore: '',
-            steps: [],
+            // steps: '',
             diets: []
         })
-        history('/home')
+
     }
 
 
@@ -244,9 +245,9 @@ export default function CreateRecipe() {
                         <h3 className="h3_steps"><strong>Steps:</strong></h3><br />
                         <textarea
                             className="input_steps"
-                            placeholder="Steps" id='steps' name='steps' type='text'
+                            placeholder="Steps" id='steps' name='steps'
                             cols='40' rows='10'
-                            value={form.steps} onChange={(e) => handleChangeSteps(e)}
+                            value={form.steps} onChange={(e) => handleChange(e)}
                             autoComplete='off' /><br />
                         {errors.steps && <p className="error">{errors.steps}</p>}
 
@@ -255,7 +256,12 @@ export default function CreateRecipe() {
                         <button onClick={handleAddStep}>+</button>
                         <button onClick={handleRemoveStep}>-</button>
                         <ol>
-                            {form.steps.map( step => (
+                        <h3>{form.steps[0].map(s=>(
+                            <li key={s}>{s}</li>
+                        ))}</h3>
+                        </ol>
+                        <ol>
+                            {form.steps[0].map( step => (
                                 <li key={step}>
                                     <input type='text' id={step} name='Instructions' autoComplete="off" onChange={handleStepsOnChange}/>
                                 </li>
