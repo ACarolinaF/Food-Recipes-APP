@@ -26,7 +26,7 @@ conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
     
-    const diets = ["gluten free", "paleolithic", "vegetarian", "lacto ovo vegetarian","vegan","pescatarian","paleo","primal","whole 30", "fodmap friendly", "fruitarian", "dairyFree"];
+    const diets = ["Gluten Free", "Paleolithic", "Vegetarian", "Lacto Ovo Vegetarian", "Vegan", "Pescatarian", "Paleo", "Primal", "Whole 30", "Fodmap Friendly", "Fruitarian", "DairyFree"];
     
     diets.forEach(async (element) => await Diet.create({name: element}));
     console.log('Diet types uploaded in DB')
