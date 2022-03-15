@@ -44,7 +44,6 @@
     text-align: center;
     width: 300px;
     margin: 10px;
-    background: #FFD879;
     background: linear-gradient(0deg, #FFD879 0%, #faca51 100%);
     border: none;
     height: 400px;
@@ -57,11 +56,30 @@
     /* border: #000 solid 3px; */
     
 }
+.recipe_div:hover{
+    border-radius: 20px;
+    text-decoration: none;
+    text-align: center;
+    width: 320px;
+    margin: 10px;
+    background: linear-gradient(0deg, #fec853 0%, #ffba0c 100%);
+    border: none;
+    height: 400px;
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+                -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+                inset -4px -4px 6px 0 rgba(255,255,255,.2),
+                inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+    text-transform: capitalize; 
 
-
-.recipe_div:hover {
-    background-color: #ffac79;
 }
+.recipe_div:hover .info_div h4{
+    margin: -3px;
+}
+
+.recipe_div:hover .img{
+    width: 320px;
+}
+
 
 
 .navlink_container_recipe{
@@ -69,62 +87,14 @@
     text-decoration: none;    
 }
 
-.button_container{
-    padding: 7px 25px;
-    margin-top: 15px;
-    margin-bottom: 10px;
-    border: none;
-    background-color: #DEC4AC;
-    color: #112a46cf;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 3000ms;
-    align-items: flex-end;
-    
-}
-
-/* .button_container {
-    border: none;
-    color: #000;
-} */
-
-.button_container:after {
-    position: absolute;
-    content: "";
-    width: 0;
-    height: 100%;
-    top: 0;
-    left: 0;
-    direction: rtl;
-    z-index: -1;
-    box-shadow:
-     -7px -7px 20px 0px #fff9,
-     -4px -4px 5px 0px #fff9,
-     7px 7px 20px 0px #0002,
-     4px 4px 5px 0px #0001;
-    transition: all 0.3s ease;
-}
-  .button_container:hover {
-    color: #000;
-  }
-  .button_container:hover:after {
-    left: auto;
-    right: 0;
-    width: 100%;
-  }
-  .button_container:active {
-    top: 2px;
-  }
-
 
 /* card cover */
 .img_div{
     /* border: solid blue; */
-    width: 300px;
     width: 100%;
     height: auto;
     overflow: hidden;
+    transition: all 800ms;
 
 }
 .img{

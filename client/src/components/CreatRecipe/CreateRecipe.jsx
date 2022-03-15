@@ -12,44 +12,44 @@ import NavBar from "../NavBar/NavBar";
 
 
 
-const validate = form =>{
+const validate = form => {
     let URL = /^(www)?.+\.[a-z]{2,6}(\.[a-z]{2,6})?.+\.[a-z]{2,4}$/;
-    let errors ={};
+    let errors = {};
 
-    if(!form.name){
+    if (!form.name) {
         errors.name = 'Recipe name is required'
-    }else if(form.name.length <4){
+    } else if (form.name.length < 4) {
         errors.name = 'Recipe name must have at least 4 characters'
     }
 
     // if(!form.image){
     //     errors.image = 'You should provide an URL image or we will update your recipe with a default one';
     // }else 
-    if(form.image){
-        if(!URL.test(form.image)){
+    if (form.image) {
+        if (!URL.test(form.image)) {
             errors.image = "The image uploaded must be an URL";
         }
     }
 
-    if(!form.summary){
+    if (!form.summary) {
         errors.summary = 'Summary is required'
-    }else if(form.summary.length <8){
+    } else if (form.summary.length < 8) {
         errors.summary = 'Summary must have at least 8 characters'
     }
 
-    if(!form.score){
+    if (!form.score) {
         errors.score = 'Score is required'
-    }else if(form.score < 0 || form.score > 100){
+    } else if (form.score < 0 || form.score > 100) {
         errors.score = 'The score must be a number between 0 and 100'
     }
 
-    if(!form.healthScore){
+    if (!form.healthScore) {
         errors.healthScore = 'Health Score is required'
-    }else if(form.healthScore < 0 || form.healthScore > 100){
+    } else if (form.healthScore < 0 || form.healthScore > 100) {
         errors.healthScore = 'The Health Score must be a number between 0 and 100'
     }
 
-    if(!form.steps){
+    if (!form.steps) {
         errors.steps = 'Type the steps of the recipe'
     }
 
@@ -58,14 +58,14 @@ const validate = form =>{
 
 
 
-export default function CreateRecipe (){
+export default function CreateRecipe() {
 
     const history = useNavigate();
     const dispatch = useDispatch();
-    const dietTypes = useSelector((state)=> state.dietTypes)
+    const dietTypes = useSelector((state) => state.dietTypes)
 
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(
             getTypes()
         );
@@ -75,19 +75,19 @@ export default function CreateRecipe (){
 
     const [form, setForm] = useState({
         name: '',
-        image:'',
+        image: '',
         summary: '',
         score: '',
         healthScore: '',
-        steps: [],
+        steps: [[]],
         diets: []
     });
 
 
-    const handleChange = e =>{
+    const handleChange = e => {
         e.preventDefault();
 
-        setForm((prev) =>({
+        setForm((prev) => ({
             ...prev,
             [e.target.name]: e.target.value
         }))
@@ -99,9 +99,17 @@ export default function CreateRecipe (){
 
     };
 
-    const handleSelect = e =>{
+    const handleChangeSteps = e => {
         e.preventDefault();
-        if(!form.diets.includes(e.target.value)){
+        setForm((prev) => ({
+            ...prev,
+            steps: [[e.target.name]]
+        }))
+    }
+
+    const handleSelect = e => {
+        e.preventDefault();
+        if (!form.diets.includes(e.target.value)) {
             setForm({
                 ...form,
                 diets: [...form.diets, e.target.value]
@@ -109,11 +117,11 @@ export default function CreateRecipe (){
         }
     }
 
-    const handleDelete = e =>{
+    const handleDelete = e => {
         e.preventDefault();
         setForm({
             ...form,
-            diets: form.diets.filter((d)=> d !== e.target.name)
+            diets: form.diets.filter((d) => d !== e.target.name)
         })
     }
 
@@ -147,13 +155,13 @@ export default function CreateRecipe (){
 
 
 
-    const handleSubmit = e =>{
+    const handleSubmit = e => {
         e.preventDefault();
 
         validate(form);
 
         let dietSelectionError = [];
-        if(form.diets.length < 1){
+        if (form.diets.length < 1) {
             dietSelectionError.push('Diet Types are required')
         }
 
@@ -179,65 +187,67 @@ export default function CreateRecipe (){
 
 
 
-    return(
+    return (
         <div className="a_div">
-            <NavBar/>
+            <div className="navBar_div_create">
+                <NavBar />
+            </div>
 
             <div className="principal_div">
                 <h2 className="title">Create a Recipe</h2>
                 <div>
-                    <form className="form" onSubmit={(e)=>handleSubmit(e)}>
-                        
-                        
-                        <h3 className="h3-name"><strong>Name:</strong></h3><br/>
+                    <form className="form" onSubmit={(e) => handleSubmit(e)}>
+
+
+                        <h3 className="h3-name"><strong>Name:</strong></h3><br />
                         <input
                             className="input_name"
-                            placeholder="Name" type="text" id='name' name='name' 
-                            value={form.name} onChange={(e)=>handleChange(e)} 
-                            autoComplete='off'/><br />
+                            placeholder="Name" type="text" id='name' name='name'
+                            value={form.name} onChange={(e) => handleChange(e)}
+                            autoComplete='off' /><br />
                         {errors.name && <p className="error">{errors.name}</p>}
 
                         <h3 className="h3_image">Image:</h3>
                         <input
                             className="input_image"
                             placeholder="Image" type="text" id='image' name='image'
-                            value={form.image} onChange={(e)=>handleChange(e)}
+                            value={form.image} onChange={(e) => handleChange(e)}
                             autoComplete='off'
-                            />
+                        />
                         {errors.image && <p className="error">{errors.image}</p>}
 
-                        <h3 className="h3-summary"><strong>Summary:</strong></h3><br/>
-                        <textarea 
+                        <h3 className="h3-summary"><strong>Summary:</strong></h3><br />
+                        <textarea
                             className="input_summary"
-                            placeholder="Summary" id='summary' name='summary' 
-                            cols='40' rows='10' 
-                            value={form.summary} onChange={(e)=>handleChange(e)} 
-                            autoComplete='off'/><br/>
+                            placeholder="Summary" id='summary' name='summary'
+                            cols='40' rows='10'
+                            value={form.summary} onChange={(e) => handleChange(e)}
+                            autoComplete='off' /><br />
                         {errors.summary && <p className="error">{errors.summary}</p>}
 
-                        <h3 className="h3_score"><strong>Score:</strong></h3><br/>
-                        <input 
+                        <h3 className="h3_score"><strong>Score:</strong></h3><br />
+                        <input
                             className="input_score"
                             placeholder="Score" id='score' name='score' type='number'
-                            value={form.score} onChange={(e)=>handleChange(e)}
-                            autoComplete='off'/><br/>
+                            value={form.score} onChange={(e) => handleChange(e)}
+                            autoComplete='off' /><br />
                         {errors.score && <p className="error">{errors.score}</p>}
 
-                        <h3 className="h3_hScore"><strong>Health Score:</strong></h3><br/>
-                        <input 
+                        <h3 className="h3_hScore"><strong>Health Score:</strong></h3><br />
+                        <input
                             className="input_hScore"
-                            placeholder="healthScore" id='healthScore' name='healthScore' type='number' 
-                            value={form.healthScore} onChange={(e)=>handleChange(e)}
-                            autoComplete='off'/><br/>
+                            placeholder="healthScore" id='healthScore' name='healthScore' type='number'
+                            value={form.healthScore} onChange={(e) => handleChange(e)}
+                            autoComplete='off' /><br />
                         {errors.healthScore && <p className="error">{errors.healthScore}</p>}
 
-                        <h3 className="h3_steps"><strong>Steps:</strong></h3><br/>
-                        <textarea 
+                        <h3 className="h3_steps"><strong>Steps:</strong></h3><br />
+                        <textarea
                             className="input_steps"
-                            placeholder="Steps" id='steps' name='steps' type='text' 
+                            placeholder="Steps" id='steps' name='steps' type='text'
                             cols='40' rows='10'
-                            value={form.steps} onChange={(e)=>handleChange(e)}
-                            autoComplete='off'/><br/>
+                            value={form.steps} onChange={(e) => handleChangeSteps(e)}
+                            autoComplete='off' /><br />
                         {errors.steps && <p className="error">{errors.steps}</p>}
 
 
@@ -254,31 +264,31 @@ export default function CreateRecipe (){
 
 
                         <h3 className="h3_dTypes"><strong>Select the Diet Types:</strong></h3>
-                        <select className='select_diets'onChange={(e)=>handleSelect(e)}>
-                            {dietTypes.map((e)=>(
-                            <option key={e.name} value={e.name}>{e.name}</option>
+                        <select className='select_diets' onChange={(e) => handleSelect(e)}>
+                            {dietTypes.map((e) => (
+                                <option key={e.name} value={e.name}>{e.name}</option>
                             ))}
                         </select>
 
                         <div className="selection_div">
-                            {form.diets.map((e)=>(
+                            {form.diets.map((e) => (
                                 <div key={e}>
                                     {e}
-                                    <button className='btn_x'name={e} onClick={(e)=>handleDelete(e)}>X</button>
+                                    <button className='btn_x' name={e} onClick={(e) => handleDelete(e)}>X</button>
                                 </div>
                             ))}
                         </div>
 
                         <div>
-                            <button className='btn_submit'type='submit'>Create</button>
+                            <button className='btn_submit' type='submit'>Create</button>
                         </div>
 
 
                     </form>
                 </div>
             </div>
-            
-            
+
+            <div className="final_div_create">.</div>
         </div>
     )
 }
