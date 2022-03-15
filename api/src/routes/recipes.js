@@ -34,7 +34,7 @@ router.get('/', async(req, res)=>{
                     summary: r.summary,
                     score: r.spoonacularScore,
                     healthScore: r.healthScore,
-                    // steps: r.analyzedInstructions.map(a=> a.steps.map(b=> b.step)).flat(1).join(""),
+                    steps: r.analyzedInstructions.map(a=> a.steps.map(b=> b.step)).flat(1).join(""),
                     diets: r.diets,
                     dishTypes: r.dishTypes,
                     cuisines: r.cuisines
@@ -55,7 +55,7 @@ router.get('/', async(req, res)=>{
                             summary: r.summary,
                             score: r.score,
                             healthScore: r.healthScore,
-                            // steps: r.analyzedInstructions.map(a=> a.steps.map(b=> b.step)).flat(1).join(""),
+                            steps: r.analyzedInstructions.map(a=> a.steps.map(b=> b.step)).flat(1).join(""),
                             diets: r.diets,
                             dishTypes: r.dishTypes,
                             cuisines: r.cuisines
@@ -82,7 +82,7 @@ router.get('/', async(req, res)=>{
                     summary: r.summary,
                     score: r.spoonacularScore,
                     healthScore: r.healthScore,
-                    // steps: r.analyzedInstructions[0].steps.map(s => s.step), //.flat(1).join(""),
+                    // steps: r.analyzedInstructions[0].steps.map(s => s.step).flat(1).join(""),
                     diets: r.diets,
                     dishTypes: r.dishTypes,
                     cuisines: r.cuisines

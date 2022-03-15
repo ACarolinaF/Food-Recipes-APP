@@ -25,13 +25,14 @@
 
 
 
-.principal_div{
-    padding: 0;
+.principal_div_recipe{
+    padding: 0px;
+    /* border: solid rebeccapurple; */
     /* box-sizing: border-box; */
     background-color: #F1FAFF;
     max-width: 1200px;
-    margin: auto;
-    margin-top: 50px;
+    /* margin: auto; */
+    margin: 20px;
 
 }
 

@@ -2,6 +2,7 @@
 
 
 .cards{
+    /* border: solid rebeccapurple; */
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -9,4 +10,7 @@
     align-items: center;
     /* min-height: 100vh; */
     background-color: #F1FAFF;
+    margin-top: 70px;
+    overflow: hidden;
+    padding: 0px;
 }

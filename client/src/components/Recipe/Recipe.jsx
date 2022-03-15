@@ -25,7 +25,7 @@ export default function Recipe(props){
                         <h4> Score: </h4>
                             <h5>{props.score} %</h5>
                     </div>
-                </div>s
+                </div>
             </NavLink>
             )}
 
