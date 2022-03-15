@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './RecipeDetail.css';
 
 
@@ -9,10 +9,13 @@ import { getDetails } from "../../actions/index"
 
 //COMPONENTS:
 import NavBar from "../NavBar/NavBar.jsx";
+import Loading from "../Loading/Loading";
 
 
 
 export default function RecipeDetail() {
+
+    const [loadingDetails, setLoadingDetails] = useState(true);
 
     const { id } = useParams();
 
@@ -23,12 +26,14 @@ export default function RecipeDetail() {
     useEffect(() => {
         dispatch(
             getDetails(id)
-        );
+        ).then(()=> setLoadingDetails(false));
     }, [dispatch, id])
 
 
 
     return (
+        <div>
+        {loadingDetails?(<Loading/>):(
         <div className="recipedetails_div">
             <div className="outro">
                 <div className="outro_2">
@@ -92,6 +97,7 @@ export default function RecipeDetail() {
                 </NavLink>
 
             </div>
+        </div>)}
         </div>
     )
 }
