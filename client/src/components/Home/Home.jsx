@@ -34,7 +34,7 @@ export default function Home (){
                 const indexOfLastCard = currentPage * cardPerPage;
                 const indexOfFirstCard = indexOfLastCard - cardPerPage;
             //renderized cards
-            const currentCards = allRecipes.slice(indexOfFirstCard, indexOfLastCard)
+            const currentCards = allRecipes?.slice(indexOfFirstCard, indexOfLastCard)
         const paginate =(pagenumber) =>{
             setCurrentPage(pagenumber);
         }

@@ -1,0 +1,39 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
+/* font-family: 'Ubuntu', sans-serif; */
+
+.navBar_container{
+    background-color: #05283b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 60px;
+    
+}
+
+.navlink{
+    padding: 4px 20px;
+    margin: 5px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 300ms;
+    font-family: 'Ubuntu', sans-serif;
+    text-transform: capitalize;
+    background-color: #b1c0dd;
+    color: #112a46cf;
+    box-shadow:  
+    inset -4px -4px 6px 0 rgba(7, 26, 65, 0.461),
+    inset 4px 4px 6px 0 rgba(241, 238, 238, 0.571);
+}
+
+.navlink:hover{
+    box-shadow:  
+    inset -4px -4px 6px 0 rgba(241, 238, 238, 0.68) ,
+    inset 4px 4px 6px 0 rgba(2, 18, 52, 0.666);
+    color: #b1c0dd;
+    background-color: #112a46cf;
+}

@@ -3,12 +3,13 @@ import './CreateRecipe.css';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getTypes } from "../../actions";
+import { getRecipes, getTypes } from "../../actions";
 import { postRecipe } from "../../actions";
 
 
 //COMPONENTS
 import NavBar from "../NavBar/NavBar";
+import NavBar_SS from "../NavBar_SS/NavBar_SS";
 
 
 
@@ -18,21 +19,23 @@ const validate = form => {
 
     if (!form.name) {
         errors.name = 'Recipe name is required'
-    } else if (form.name.length < 4) {
-        errors.name = 'Recipe name must have at least 4 characters'
     }
+    // else if (form.name.length < 4) {
+    //     errors.name = 'Recipe name must have at least 4 characters'
+    // }
 
-    if (form.image) {
-        if (!URL.test(form.image)) {
-            errors.image = "The image uploaded must be an URL";
-        }
-    }
+    // if (form.image) {
+    //     if (!URL.test(form.image)) {
+    //         errors.image = "The image uploaded must be an URL";
+    //     }
+    // }
 
     if (!form.summary) {
         errors.summary = 'Summary is required'
-    } else if (form.summary.length < 8) {
-        errors.summary = 'Summary must have at least 8 characters'
     }
+    // else if (form.summary.length < 8) {
+    //     errors.summary = 'Summary must have at least 8 characters'
+    // }
 
     if (!form.score) {
         errors.score = 'Score is required'
@@ -44,10 +47,6 @@ const validate = form => {
         errors.healthScore = 'Health Score is required'
     } else if (form.healthScore < 0 || form.healthScore > 100) {
         errors.healthScore = 'The Health Score must be a number between 0 and 100'
-    }
-
-    if (!form.steps) {
-        errors.steps = 'Type the steps of the recipe'
     }
 
     return errors;
@@ -62,24 +61,65 @@ export default function CreateRecipe() {
     const dietTypes = useSelector((state) => state.dietTypes)
 
 
-    useEffect(() => {
-        dispatch(
-            getTypes()
-        );
-    }, [])
-
-    const [errors, setErrors] = useState({})
-
     const [form, setForm] = useState({
         name: '',
         image: '',
         summary: '',
         score: '',
         healthScore: '',
-        steps: '',
+        steps: [{ number: 1, step: '' }],
         diets: []
     });
 
+    const [errors, setErrors] = useState({})
+    const [added, setAdded] = useState(false);
+
+    useEffect(() => {
+            dispatch(getTypes(dispatch));
+
+    }, []);
+
+
+    //STEPS---------
+
+    const handleStepsOnChange = e => {
+        e.preventDefault();
+
+        let stepsArray = form.steps;
+        stepsArray[e.target.id - 1].step = e.target.value;
+
+        setForm({
+            ...form,
+            steps: stepsArray
+        })
+    }
+
+    const handleAddStep = e => {
+        e.preventDefault()
+        let new_step = { number: form.steps[form.steps.length - 1].number + 1, step: "" };
+        //podria cortar el -1 co el +1
+
+        setForm({
+            ...form,
+            steps: [...form.steps, new_step]
+        })
+    }
+
+    const handleRemoveStep = e => {
+        e.preventDefault()
+
+        let newSteps = form.steps;
+
+        if (newSteps.length > 1) newSteps.pop();
+
+        setForm({
+            ...form,
+            steps: newSteps
+        });
+    }
+
+
+    //--------------
 
     const handleChange = e => {
         e.preventDefault();
@@ -87,7 +127,7 @@ export default function CreateRecipe() {
         setForm((prev) => ({
             ...prev,
             [e.target.name]: e.target.value
-        }))
+        }));
 
         setErrors(validate({
             ...form,
@@ -96,17 +136,6 @@ export default function CreateRecipe() {
 
     };
 
-    const handleChangeSteps = e => {
-        e.preventDefault();
-        setForm((prev) => ({
-            ...prev,
-            steps: [[e.target.name]]
-        }))
-        setErrors(validate({
-            ...form,
-            [e.target.name]: e.target.value
-        }))
-    }
 
     const handleSelect = e => {
         e.preventDefault();
@@ -127,62 +156,50 @@ export default function CreateRecipe() {
     }
 
 
-    const handleStepsOnChange = e =>{
-        e.preventDefault();
 
-        let stepsArray = form.steps;
-        stepsArray[0]=e.target.value;
-    }
-
-    const handleAddStep = e =>{
-        e.preventDefault()
-        let new_steps = form.steps;
-        new_steps = new_steps[0].push(e.target.value);
-        setForm({
-            ...form,
-            steps: new_steps
-        })
-    }
-
-    const handleRemoveStep = e =>{
-        e.preventDefault()
-        let newSteps = form.steps;
-        if(newSteps[0].length > 1) newSteps.pop();
-        setForm({
-            ...form,
-            steps: newSteps
-        });
-    }
 
 
 
     const handleSubmit = e => {
         e.preventDefault();
-        setErrors(validate(form));
+
+        validate(form);
 
         let dietSelectionError = [];
         if (form.diets.length < 1) {
             dietSelectionError.push('Diet Types are required')
         }
 
-        if(Object.values(errors).length || dietSelectionError.length){
+        if (Object.values(errors).length || dietSelectionError.length) {
             return alert(Object.values(errors).concat(dietSelectionError).join('\n'))
-        }
-
-        dispatch(postRecipe(form));
-
-        alert(`${form.name} Recipe Created Successfully`);
-        navigate('/home')
-
+        } 
+        // else {
+        //     // postRecipe(form)
+        //     //     .then(response => {
+        //     //         setAdded(true);
+        //     //         dispatch(getRecipes("", dispatch));
+        //     //         // setTimeout(()=>{
+        //     //         //     navigate.push('/home')
+        //     //         // }, 2000);
+        //     //         alert(`${form.name} Recipe Created Successfully`);
+        //     //         navigate('/home')
+        //     //     })
+        //     //     .catch(error => console.log(error));
+        // }
+        dispatch(getRecipes);
+        dispatch(postRecipe(form))
         setForm({
             name: '',
             image: '',
             summary: '',
             score: '',
             healthScore: '',
-            // steps: '',
+            steps: [{ number: 1, step: '' }],
             diets: []
         })
+        alert("Recipe Created Successfully")
+       
+        navigate('/home');
 
     }
 
@@ -191,7 +208,7 @@ export default function CreateRecipe() {
     return (
         <div className="a_div">
             <div className="navBar_div_create">
-                <NavBar />
+                <NavBar_SS />
             </div>
 
             <div className="principal_div">
@@ -208,14 +225,18 @@ export default function CreateRecipe() {
                             autoComplete='off' /><br />
                         {errors.name && <p className="error">{errors.name}</p>}
 
-                        <h3 className="h3_image">Image:</h3>
+                        {/* <h3 className="h3_image">Image:</h3>
+                        {
+                            form.image?(<img src={form.image}/>):(<h5>If you don't provide a valid URL we will add a default image</h5>)
+                        }
+                        
                         <input
                             className="input_image"
                             placeholder="Image" type="text" id='image' name='image'
                             value={form.image} onChange={(e) => handleChange(e)}
                             autoComplete='off'
                         />
-                        {errors.image && <p className="error">{errors.image}</p>}
+                        {errors.image && <p className="error">{errors.image}</p>} */}
 
                         <h3 className="h3-summary"><strong>Summary:</strong></h3><br />
                         <textarea
@@ -242,51 +263,67 @@ export default function CreateRecipe() {
                             autoComplete='off' /><br />
                         {errors.healthScore && <p className="error">{errors.healthScore}</p>}
 
-                        <h3 className="h3_steps"><strong>Steps:</strong></h3><br />
+                        {/* <h3 className="h3_steps"><strong>Steps:</strong></h3><br />
                         <textarea
                             className="input_steps"
                             placeholder="Steps" id='steps' name='steps'
                             cols='40' rows='10'
                             value={form.steps} onChange={(e) => handleChange(e)}
                             autoComplete='off' /><br />
-                        {errors.steps && <p className="error">{errors.steps}</p>}
+                        {errors.steps && <p className="error">{errors.steps}</p>} */}
 
 
-                        {/* <h3>Steps:</h3>
-                        <button onClick={handleAddStep}>+</button>
-                        <button onClick={handleRemoveStep}>-</button>
-                        <ol>
-                        <h3>{form.steps[0].map(s=>(
-                            <li key={s}>{s}</li>
-                        ))}</h3>
-                        </ol>
-                        <ol>
-                            {form.steps[0].map( step => (
-                                <li key={step}>
-                                    <input type='text' id={step} name='Instructions' autoComplete="off" onChange={handleStepsOnChange}/>
-                                </li>
-                            ))}
-                        </ol> */}
+
+                        <div className="div_steps_create">
+                            <div className="div_btn_steps_create">
+                            <h3 className="h3_steps">Steps:</h3>
+                            <button className="btn_add_remove_steps" onClick={handleAddStep}>+</button>
+                            <button className="btn_add_remove_steps" onClick={handleRemoveStep}>-</button>
+                            </div>
+
+                            <div>
+                            <ol>
+                                {form.steps.map(s => (
+                                    <li key={s.number}>
+                                        <div className="li_input_create">
+                                            <input className="input_steps_create" type="text" id={s.number} name="step" onChange={handleStepsOnChange} autoComplete="off" />
+                                        </div>
+                                    </li>
+                                ))}
+                            </ol>
+                            </div>
+                        </div>
+
+
+                        
+                        <h5>Have a look on how your steps will look like:</h5>
+
+                        <h6>{form.steps.map(s => `${s.number} - ${s.step}`)}</h6>
 
 
                         <h3 className="h3_dTypes"><strong>Select the Diet Types:</strong></h3>
                         <select className='select_diets' onChange={(e) => handleSelect(e)}>
-                            {dietTypes.map((e) => (
+                            {dietTypes?.map((e) => (
                                 <option key={e.name} value={e.name}>{e.name}</option>
                             ))}
                         </select>
 
                         <div className="selection_div">
-                            {form.diets.map((e) => (
+                            {form.diets?.map((e) => (
                                 <div key={e}>
                                     {e}
                                     <button className='btn_x' name={e} onClick={(e) => handleDelete(e)}>X</button>
                                 </div>
                             ))}
                         </div>
+                        
+                        <h5>We will add a default image for your recipe</h5>
+                        <h6>(  No worries, that's beautiful :)  )</h6>
 
                         <div>
-                            <button className='btn_submit' type='submit'>Create</button>
+                            <button className='btn_submit' type='submit' disabled={added}>
+                                {added ? <span>lindo!</span> : <span>Create</span>}
+                            </button>
                         </div>
 
 

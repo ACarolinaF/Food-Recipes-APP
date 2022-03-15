@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './RecipeDetail.css';
+import default_img from '../../img/Default/default.jpg'
 
 
 import { NavLink, useParams } from "react-router-dom";
@@ -44,7 +45,11 @@ export default function RecipeDetail() {
                             <h1 className="title_principal_container_rd">{recipeDetails.name}</h1>
                             <div className="conjunt_rd">
                                 <div className="card_img_rd">
-                                    <img className="img_rd" src={recipeDetails.image && recipeDetails.image} alt="Recipe Details" />
+                                    {recipeDetails.image && recipeDetails.image ? (
+                                        <img className="img" src={recipeDetails.image} alt="Recipe" />
+                                        ) : (
+                                        <img className="img" src={default_img} alt="Recipe" />
+                                    )}
                                     <div className="container_img_rd">.</div>
                                 </div>
 
@@ -73,7 +78,14 @@ export default function RecipeDetail() {
                                 </div>
                                 <div className="central_div_rd">
                                     <h2 className="titles_container_rd"><span>Diet Type(s):</span></h2>
-                                    <p className="info_container_rd">{recipeDetails.diets && recipeDetails.diets.join(", ")}</p>
+                                    {
+                                        // recipeDetails.diets.map(r=>{
+                                        //     r.name?(
+                                        //         <div>{r.name}</div> ):
+                                        //         (<p className="info_container_rd">{r}</p>)
+                                        // })
+                                        recipeDetails.diets && recipeDetails.diets?.map(r => r.name ? <div>{r.name}</div> : <div>{r}</div>)
+                                    }
                                 </div>
                             </div>
 
@@ -89,7 +101,7 @@ export default function RecipeDetail() {
                                 <div className="text_rd">
                                     <p className="info_container_tx">
                                         {recipeDetails.steps &&
-                                            recipeDetails.steps.map(s=>(
+                                            recipeDetails.steps?.map(s => (
                                                 <p><strong>{s.number}</strong> - {s.step}</p>
                                             ))
                                         }
