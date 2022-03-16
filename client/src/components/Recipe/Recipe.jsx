@@ -21,7 +21,9 @@ export default function Recipe(props) {
                         <div className="info_div">
                             <h2> {props.name}</h2>
                             <h4> Diet Type:</h4>
-                            {props.diets && props.diets?.map(r =>  r.name? <div>{r.name}</div>: <div>{r}</div>)}
+                            <div className="container_dietTypes_rd">
+                            {props.diets && props.diets?.map(r =>  r.name? <div className="dietTypes_div_rd">{r.name}</div>: <div className="dietTypes_div_rd">{r}</div>)}
+                            </div>
                             <h4> Score: </h4>
                             <h5>{props.score} %</h5>
                         </div>
