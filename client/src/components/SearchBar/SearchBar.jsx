@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import './SearchBar.css';
 
 
-import { searchName } from "../../actions";
+import { searchName , getRecipes} from "../../actions";
 
 import loupe from "../../img/SearchBar/loupe.png";
 
@@ -21,10 +21,23 @@ export default function SearchBar(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if(input.length <=1){
+            alert('To find a Recipe you should here at least 2 characters');
+            // setInput("");
+            return;
+        }
+
         dispatch(
             searchName(input)
         );
         setInput("")
+    }
+
+    const handleRefresh = (e) =>{
+        dispatch(
+            getRecipes()
+        );
     }
 
     const handleEnter = (e) =>{
@@ -54,6 +67,7 @@ export default function SearchBar(){
                 onClick={e=>handleSubmit(e)}
             >GO!
             </button>
+            <button onClick={handleRefresh}>Refresh</button>
         </div>
     )
 }

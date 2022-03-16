@@ -7,7 +7,6 @@ import { useState } from "react";
 
 //componentes importados:
 import NavBar from '../NavBar/NavBar.jsx';
-import SearchBar from "../SearchBar/SearchBar";
 import FilterBy from "../FilterBy/FilterBy";
 import Pagination from "../Pagination/Pagination";
 import RecipeCards from "../RecipeCards/RecipeCards";
@@ -55,6 +54,9 @@ export default function Home (){
 
     const handleSelect_filter = (e) =>{
         e.preventDefault();
+        if(e.target.value === ""){
+            dispatch(getRecipes());
+        }
         dispatch(filter(e.target.value))
         setCurrentPage(1)
     }
@@ -90,7 +92,7 @@ export default function Home (){
             
             <Pagination
                 cardPerPage={cardPerPage}
-                totalCards={allRecipes.length}
+                totalCards={allRecipes?.length}
                 paginate={paginate}
                 currentPage={currentPage}
             />
@@ -101,7 +103,7 @@ export default function Home (){
                     loading ?
                         (<Loading/>
                         ):(
-                            allRecipes && allRecipes.length > 0 ? (
+                            allRecipes && allRecipes?.length > 0 ? (
                                 <RecipeCards
                                     recipes={currentCards}
                                 />

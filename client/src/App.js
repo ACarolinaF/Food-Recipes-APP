@@ -8,6 +8,7 @@ import Home from './components/Home/Home.jsx';
 import CreateRecipe from './components/CreatRecipe/CreateRecipe.jsx';
 import RecipeDetail from './components/RecipeDetail/RecipeDetail.jsx';
 import About from './components/About/About.jsx';
+import Page404 from './components/Page404/Page404.jsx'
 
 
 
@@ -21,6 +22,7 @@ export default function App() {
         <Route path='/createrecipe' element={<CreateRecipe />}/>
         <Route path='/recipe/:id'element={<RecipeDetail />}/>
         <Route path='/about' element={<About />}/>
+        <Route path="*" element={<Page404/>}/>
       </Routes>
     </div>
     </BrowserRouter>

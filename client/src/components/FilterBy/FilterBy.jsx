@@ -14,8 +14,8 @@ export default function FilterBy({allDietTypes, handleSelect_filter, handleSelec
     return(
         <div className="initial">
         <div className="principal_div_search">
-            <select className="select_container" onChange={handleSelect_filter} name="" id="">
-                <option className="option" value="allrecipes">All Recipes</option> 
+            <select className="select_container" defaultValue ="" onChange={handleSelect_filter} name="" id="">
+                <option className="option" value="">All Recipes</option> 
 
                 <optgroup className="optionGroup" label="Data Base">
                     <option className="option" value="filter_BD">My Own Recipes</option>
@@ -32,7 +32,7 @@ export default function FilterBy({allDietTypes, handleSelect_filter, handleSelec
                 <option>Diet Types</option>
                 <optgroup label="Chose by Diet Types">
                     <option className="option" value="all">All Diet Types</option>
-                    {allDietTypes && allDietTypes.map(r => <option key={r.name} value={r.name}>{r.name}</option>)}
+                    {allDietTypes && allDietTypes?.map(r => <option key={r.name} value={r.name}>{r.name}</option>)}
                 </optgroup>
             </select>
 

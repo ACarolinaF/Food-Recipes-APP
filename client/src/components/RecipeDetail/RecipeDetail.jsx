@@ -72,10 +72,19 @@ export default function RecipeDetail() {
                             </div>
 
                             <div className="normal_div_rd">
+
                                 <div className="central_div_rd">
                                     <h2 className="titles_container_rd"><span>Dish Type(s):</span></h2>
-                                    <p className="info_container_rd"> {recipeDetails.dishTypes && recipeDetails.dishTypes.join(", ")}</p>
+                                    {recipeDetails.dishTypes && recipeDetails.dishTypes? 
+                                        (<p className="info_container_rd"> {recipeDetails.dishTypes && recipeDetails.dishTypes?.join(", ")}</p>)
+                                        :
+                                        (<p className="info_container_rd"> - </p>)
+                                    }
+                                    
                                 </div>
+
+
+                                
                                 <div className="central_div_rd">
                                     <h2 className="titles_container_rd"><span>Diet Type(s):</span></h2>
                                     {
@@ -84,7 +93,7 @@ export default function RecipeDetail() {
                                         //         <div>{r.name}</div> ):
                                         //         (<p className="info_container_rd">{r}</p>)
                                         // })
-                                        recipeDetails.diets && recipeDetails.diets?.map(r => r.name ? <div>{r.name}</div> : <div>{r}</div>)
+                                        recipeDetails.diets && recipeDetails.diets?.map(r => r.name ? <div className="info_container_rd">{r.name}</div> : <div className="info_container_rd">{r}</div>)
                                     }
                                 </div>
                             </div>
@@ -101,8 +110,10 @@ export default function RecipeDetail() {
                                 <div className="text_rd">
                                     <p className="info_container_tx">
                                         {recipeDetails.steps &&
-                                            recipeDetails.steps?.map(s => (
+                                            recipeDetails.steps?.map((s, i)=> s.number ? (
                                                 <p><strong>{s.number}</strong> - {s.step}</p>
+                                            ):(
+                                                <p><strong>{i+1}</strong> - {s}</p>
                                             ))
                                         }
                                     </p>
