@@ -67,7 +67,10 @@ export default function SearchBar(){
                 onClick={e=>handleSubmit(e)}
             >GO!
             </button>
-            <button onClick={handleRefresh}>Refresh</button>
+            <button 
+                className="refresh_btn"
+                onClick={handleRefresh}
+            >Refresh</button>
         </div>
     )
 }
