@@ -8,13 +8,12 @@ import { postRecipe } from "../../actions";
 
 
 //COMPONENTS
-import NavBar from "../NavBar/NavBar";
 import NavBar_SS from "../NavBar_SS/NavBar_SS";
 
 
 
 const validate = form => {
-    let URL = /^(www)?.+\.[a-z]{2,6}(\.[a-z]{2,6})?.+\.[a-z]{2,4}$/;
+    // let URL = /^(www)?.+\.[a-z]{2,6}(\.[a-z]{2,6})?.+\.[a-z]{2,4}$/;
     let errors = {};
 
     if (!form.name) {
@@ -70,7 +69,6 @@ export default function CreateRecipe() {
     });
 
     const [errors, setErrors] = useState({})
-    const [added, setAdded] = useState(false);
 
     useEffect(() => {
         dispatch(getTypes(dispatch));
@@ -157,7 +155,7 @@ export default function CreateRecipe() {
 
 
 
-
+//não deixar que se crie se já tem o mesmo (ver por name)
     const handleSubmit = e => {
         e.preventDefault();
 
@@ -303,8 +301,7 @@ export default function CreateRecipe() {
                         </div>
 
                         <div>
-                            <button className='btn_submit' type='submit' disabled={added}>
-                                {added ? <span>lindo!</span> : <span>Create</span>}
+                            <button className='btn_submit' type='submit' > <span>Create</span>
                             </button>
                         </div>
 

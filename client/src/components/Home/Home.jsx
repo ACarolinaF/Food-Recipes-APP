@@ -34,6 +34,8 @@ export default function Home (){
                 const indexOfFirstCard = indexOfLastCard - cardPerPage;
             //renderized cards
             const currentCards = allRecipes?.slice(indexOfFirstCard, indexOfLastCard)
+
+            
         const paginate =(pagenumber) =>{
             setCurrentPage(pagenumber);
         }
@@ -108,7 +110,7 @@ export default function Home (){
                                     recipes={currentCards}
                                 />
                             ):(
-                                <div>
+                                <div className="cant_find_home">
                                     <h4>Sorry, we can't answer to your request...</h4>
                                     <h4>Try Again!</h4>
                                     <img src={empty} alt="empty"/>

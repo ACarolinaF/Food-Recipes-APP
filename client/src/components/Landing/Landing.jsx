@@ -2,7 +2,6 @@ import React from "react";
 import './Landing.css';
 import {Link} from 'react-router-dom';
 
-import landing from '../../img/Landing/landing.gif';
 
 export default function Landing(){
     return(

@@ -1,5 +1,13 @@
 
 
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+/* font-family: 'Amatic SC', cursive; */
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
+/* font-family: 'Ubuntu', sans-serif; */
+
+
+
 .home_container{
     background-color: #F1FAFF;
 }
@@ -17,6 +25,13 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+}
+
+.cant_find_home{
+    margin-top: 50px;
+    font-family: 'Amatic SC', cursive;
+    font-size: 30px;
+    color:#05283b;
 }
 
 

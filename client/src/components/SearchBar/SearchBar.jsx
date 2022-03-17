@@ -5,8 +5,6 @@ import './SearchBar.css';
 
 import { searchName , getRecipes} from "../../actions";
 
-import loupe from "../../img/SearchBar/loupe.png";
-
 
 export default function SearchBar(){
 
@@ -23,7 +21,7 @@ export default function SearchBar(){
         e.preventDefault();
 
         if(input.length <=1){
-            alert('To find a Recipe you should here at least 2 characters');
+            alert('To find a Recipe you should enter here at least 2 characters');
             // setInput("");
             return;
         }

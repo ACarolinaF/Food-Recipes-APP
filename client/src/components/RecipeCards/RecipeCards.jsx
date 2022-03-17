@@ -1,6 +1,5 @@
 import React from "react";
 import './RecipeCards.css';
-import { useState } from "react";
 
 import Recipe from '../Recipe/Recipe'
 

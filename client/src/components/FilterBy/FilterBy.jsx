@@ -1,8 +1,6 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import './FilterBy.css';
-import { getTypes } from "../../actions";
-import { filter, order, filter_diet} from "../../actions";
+
 
 
 
