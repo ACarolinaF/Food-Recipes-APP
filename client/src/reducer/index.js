@@ -17,7 +17,6 @@ const inicialState={
     dietTypes:[],
     orderBy:[]
     
-    // ---- TERMINAR O FILTER E O ORDER
 
 }
 
