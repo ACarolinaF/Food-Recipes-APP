@@ -46,3 +46,28 @@ li{
     inset 4px 4px 6px 0 rgba(7, 26, 65, 0.461) ;
 
 }
+
+.pagination_ol{
+    display: flex;
+    flex-direction: row;
+}
+
+.pagination_h6{
+    color: #FFD879;
+    /* font-size: x-large; */
+    margin: solid red;
+
+}
+
+.button_pag_2{
+    background-color: #FFD879;
+    color: #112a46cf;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 300ms;
+    font-weight: bold  ;
+    box-shadow:  
+    inset -4px -4px 6px 0 rgba(7, 26, 65, 0.461),
+    inset 4px 4px 6px 0 rgba(241, 238, 238, 0.42);
+}

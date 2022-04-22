@@ -10,46 +10,55 @@ export default function Pagination({ cardPerPage, totalCards, paginate, currentP
     }
     const limit_page = Math.ceil(totalCards / cardPerPage);
 
-    return(
-        <div className="pagination_div">
-            <ul>
-                {pageNumbers.length >1 &&
-                    pageNumbers.map((p)=>{
-                        return (
-                            <li key={p}>
-                                <button className="button_pag" onClick={()=> paginate(p)}>
-                                    {p}
-                                </button>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
-        </div>
-    )
-
-    // return (
+    // return(
     //     <div className="pagination_div">
-    //         <ol>
-    //             <li>
-    //                 <button onClick={() => paginate(currentPage - 1)}> previous </button>
-    //             </li>
-    //             {/* pagina actual */}
-    //                 <h6>{currentPage}</h6>
-    //             <li>
-    //                 {
-    //                     currentPage+1 <= limit_page?(
-    //                         <button onClick={() => paginate(currentPage + 1)}> next </button>
-    //                     ):(
-    //                        null
+    //         <ul>
+    //             {pageNumbers.length >1 &&
+    //                 pageNumbers.map((p)=>{
+    //                     return (
+    //                         <li key={p}>
+    //                             <button className="button_pag" onClick={()=> paginate(p)}>
+    //                                 {p}
+    //                             </button>
+    //                         </li>
     //                     )
-    //                 }
-                    
-    //             </li>
-    //         </ol>
-
+    //                 })
+    //             }
+    //         </ul>
     //     </div>
     // )
+
+    return (
+        <div className="pagination_div">
+            <ol className="pagination_ol">
+                <li>
+                    {
+                        currentPage-1 > 0 ? (
+                            <button className="button_pag_2" onClick={() => paginate(currentPage - 1)}> previous </button>
+                        ):(
+                            null
+                        )
+                    }
+
+
+                    
+                </li>
+                {/* pagina actual */}
+                    <h6 className="pagination_h6">{currentPage}</h6>
+                <li>
+                    {
+                        currentPage+1 <= limit_page?(
+                            <button className="button_pag_2" onClick={() => paginate(currentPage + 1)}> next </button>
+                        ):(
+                           null
+                        )
+                    }
+                    
+                </li>
+            </ol>
+
+        </div>
+    )
 
 
 }
