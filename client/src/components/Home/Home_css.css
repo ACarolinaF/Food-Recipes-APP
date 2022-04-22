@@ -1,0 +1,48 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+/* font-family: 'Amatic SC', cursive; */
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
+/* font-family: 'Ubuntu', sans-serif; */
+
+
+
+.home_container{
+    background-color: #F1FAFF;
+}
+
+.nav_filter_container{
+    background-color: #05283b;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: space-evenly; */
+    height: 100px;
+}
+
+
+.recipe_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.cant_find_home{
+    margin-top: 50px;
+    font-family: 'Amatic SC', cursive;
+    font-size: 30px;
+    color:#05283b;
+}
+
+
+.empty_space{
+    color: transparent;
+    height: 10em;
+}
+
+.last_div{
+    color:transparent;
+    background-color: #05283b;
+    height: 10em;
+    margin-top: 5em;
+}

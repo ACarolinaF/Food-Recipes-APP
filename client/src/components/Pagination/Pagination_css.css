@@ -1,0 +1,73 @@
+.pagination_div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #05283b;
+    border-radius: 0px 0px 25px 25px;
+}
+
+ul{
+    display: flex;
+    flex-direction: row;
+}
+
+li{
+    list-style: none;
+    padding: 0%;
+    margin-right: 3px;
+    margin-left: 3px;
+    margin-top: -15px;
+    margin-bottom: -15px;
+    width: 30px;
+    align-items: center;
+}
+
+.button_pag{
+    padding: 7px;
+    margin: 10px;
+    border: none;
+    background-color: #FFD879;
+    color: #112a46cf;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 300ms;
+    width: 2em;
+    font-weight: bold;
+    box-shadow:  
+    inset -4px -4px 6px 0 rgba(7, 26, 65, 0.461),
+    inset 4px 4px 6px 0 rgba(241, 238, 238, 0.42);
+}
+
+.button_pag:hover{
+    background-color: #d0a026;
+    box-shadow:  
+    inset -4px -4px 6px 0 rgba(241, 238, 238, 0.42),
+    inset 4px 4px 6px 0 rgba(7, 26, 65, 0.461) ;
+
+}
+
+.pagination_ol{
+    display: flex;
+    flex-direction: row;
+}
+
+.pagination_h6{
+    color: #FFD879;
+    /* font-size: x-large; */
+    margin: solid red;
+
+}
+
+.button_pag_2{
+    background-color: #FFD879;
+    color: #112a46cf;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 300ms;
+    font-weight: bold  ;
+    box-shadow:  
+    inset -4px -4px 6px 0 rgba(7, 26, 65, 0.461),
+    inset 4px 4px 6px 0 rgba(241, 238, 238, 0.42);
+}

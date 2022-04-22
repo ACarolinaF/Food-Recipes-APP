@@ -1,0 +1,34 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+/* font-family: 'Amatic SC', cursive; */
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
+/* font-family: 'Ubuntu', sans-serif; */
+
+
+
+
+.lost_404_h3{
+    font-family: 'Amatic SC', cursive;
+    font-size: 70px;
+}
+
+.lost_404_btn{
+    padding: 10px 40px;
+    margin: 5px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 25px;
+    cursor: pointer;
+    transition: all 800ms;
+    font-family: 'Ubuntu', sans-serif;
+    text-transform: capitalize;
+    background-color: #292924;
+    color: whitesmoke;
+}
+
+.lost_404_btn:hover{
+    color: #292924;
+    background-color: whitesmoke;
+}

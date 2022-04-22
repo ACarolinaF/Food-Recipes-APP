@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
+/* font-family: 'Ubuntu', sans-serif; */
+
+.searchBar_input{
+    padding: 7px 25px;
+    margin: 5px;
+    margin-top: 30px;
+    margin-right: -100px;
+    border-radius: 8px 0px 0px 8px;
+    border:none;
+    background-color: #b2b8ab;
+    font-size: 14px;
+    width: 150px;
+    height: 18px;
+
+}
+
+
+.searchBar_go{
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #98a786;
+    border: none;
+    border-radius: 0px 8px 8px 0px;
+    border: none;
+    cursor: pointer;
+    height: 32px;
+    width: 55px;
+    color: #112a46cf;
+    margin-left: 100px;
+    transition: all 300ms;
+    font-weight: bolder;
+    /* margin-right: -68px; */
+    box-shadow:  
+    inset -4px -4px 6px 0 rgba(35, 63, 6, 0.55),
+    inset 4px 4px 6px 0 rgba(241, 238, 238, 0.571);
+}
+
+.searchBar_go:hover{
+    box-shadow:  
+    inset -4px -4px 6px 0 rgba(241, 238, 238, 0.571),
+    inset 4px 4px 6px 0 rgba(35, 63, 6, 0.303);
+    color: #98a786;
+    background-color: #112a46cf;
+}
+
+::placeholder{
+    color: #112a46cf;
+    /* font-family: 'Ubuntu', sans-serif; */
+}
+
+.refresh_btn{
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #98a786;
+    border: none;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    height: 32px;
+    width: 60px;
+    color: #112a46cf;
+    margin-left: 10px;
+    transition: all 300ms;
+    font-weight: bolder;
+    /* margin-right: -68px; */
+    box-shadow:  
+    inset -4px -4px 6px 0 rgba(35, 63, 6, 0.55),
+    inset 4px 4px 6px 0 rgba(241, 238, 238, 0.571);
+}
+
+.refresh_btn:hover{
+    box-shadow:  
+    inset -4px -4px 6px 0 rgba(241, 238, 238, 0.571),
+    inset 4px 4px 6px 0 rgba(35, 63, 6, 0.303);
+    color: #98a786;
+    background-color: #112a46cf;
+}

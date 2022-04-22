@@ -1,0 +1,256 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+/* font-family: 'Amatic SC', cursive; */
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
+/* font-family: 'Ubuntu', sans-serif; */
+
+
+
+.a_div{
+    background-color: #F1FAFF;
+    
+}
+
+.navBar_div_create{
+    background-color: #05283b;
+}
+
+.title{
+    font-family: 'Amatic SC', cursive;
+    font-size: 55px;
+}
+
+.h3-title_create{
+    font-family: 'Amatic SC', cursive;
+    font-size: 40px;
+    margin-bottom: -8px;
+}
+
+.error{
+    color: brown;
+    font-size: 0.9em;
+}
+
+.input_name{
+    border-radius: 8px;
+    border: 0px;
+    background-color: #ffd97997;
+    width: 35%;
+    height: 2em;
+    font-size: 20px;
+}
+
+.input_summary{
+    border-radius: 8px;
+    border: 0px;
+    background-color: #ffd97997;
+    width: 35%;
+    font-size: 20px;
+}
+
+.score_div_center{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.input_score{
+    border-radius: 8px;
+    border: 0px;
+    background-color: #ffd97997;
+    width: 27%;
+    height: 3em;
+    font-size: 20px;
+    padding-left: 15px;
+}
+
+.div_steps_create{
+    /* border: solid 2px firebrick; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 50%;
+    margin-left: 350px;
+    margin-top: 60px;
+    background-color:#ffd97997;
+    border-radius: 10px;
+}
+
+.h3-title_create_steps{
+    margin: 0px;
+    font-family: 'Amatic SC', cursive;
+    font-size: 40px;
+}
+
+.btn_add_remove_steps{
+    margin: 5px;
+    font-weight: bold;
+    width: 35px;
+    height: 45px;
+    padding: 10px;
+    cursor: pointer;
+    
+    font-size: 20px;
+    font-family: 'Ubuntu', sans-serif;
+    color: #112a46cf;
+
+    background-color: #fac94c;
+    border: none;
+    border-radius: 8px;
+    transition: all 500ms;
+    box-shadow:  
+                inset -4px -4px 6px 0 rgba(255, 255, 255, 0.125),
+                inset 4px 4px 6px 0 rgba(0, 0, 0, 0.187);
+
+}
+
+.btn_add_remove_steps:hover{
+    background-color:#d39905;
+}
+
+.h_input_create{
+    width: 350px;
+    margin:-5px;
+    padding: -5px;
+}
+
+.input_steps_create{
+    background-color: #b1c0dd;
+    margin: 10px;
+    width: 300px;
+    border-radius: 5px;
+    height: 2em;
+    border: none;
+}
+
+.up_review_steps_create{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.review_steps_create{
+    margin: 15px;
+    background-color: #b1c0dd41;
+    width: 25%;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: 300;
+
+}
+.select_diets{
+    border-radius: 8px;
+    border: 0px;
+    background-color: #ffd97997;
+    width: 25%;
+    height: 2em;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    text-transform: capitalize;
+    font-size: 18px;
+    align-content: center;
+    text-align-last: center;
+}
+
+.up_selection_div{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.selection_div{
+    background-color: yellowgreen;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 35%;
+    height: auto;
+    background-color: #ffd97997;
+    justify-content: center;
+    border-radius: 8px;
+    text-transform: capitalize;
+    margin-bottom: 55px;
+}
+
+.selection_diet_create{
+    background-color: #ebb73297;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px 0px 0px 5px;
+}
+
+.btn_x{
+    padding: 5px 10px;
+    margin: 10px;
+    border: none;
+    /* background-color: #BEB5C6; */
+    background-color: #a53e27b1;
+    color: whitesmoke;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 3000ms;
+    font-weight: bold;
+}
+
+
+.farta_create{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
+}
+
+.final_info_create{
+    background-color: #98a78682;
+    padding: 0px 20px;
+    border-radius: 10px;
+}
+
+.h5_final_info{
+    margin: 5px;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+
+.btn_submit{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 55px;
+    padding: 7px 25px;
+    margin-bottom: 50px;
+    border: none;
+    background-color: #98a786;
+    color: #112a46cf;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 800ms;
+    box-shadow:  
+                inset -4px -4px 6px 0 rgba(255, 255, 255, 0.125),
+                inset 4px 4px 6px 0 rgba(0, 0, 0, 0.187);
+}
+.btn_submit:hover{
+    background-color: #62724e;
+    color: whitesmoke
+}
+
+
+.final_div_create{
+    color: transparent;
+    background-color: #05283b;
+    height: 200px;
+}
+
+
+
+
+
+
+
